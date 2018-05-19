@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Mp3Window"
         mc:Ignorable="d"
         Style="{StaticResource MainWindowStyle}"
-        Title="MainWindow" Height="600" Width="1000">
+        Title="MainWindow" Height="700" Width="1000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -33,10 +33,53 @@
                 <Label>假装是一些歌单</Label>
             </StackPanel>
             <StackPanel  Grid.Column="1">
-                <StackPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0">
+                        <Label Margin="10,10">歌单</Label>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="200" Width="200" Margin="10,0,0,0" Stretch="UniformToFill" >
+                                <Image.Clip>
+                                    <RectangleGeometry Rect="0,0,200,200"></RectangleGeometry>
+                                </Image.Clip>
+                                <Image.Source>
+                                    <BitmapImage UriSource="image/covertest.jpg"/>
+                                </Image.Source>
+                            </Image>
+                            <StackPanel Margin="20,0,0,0">
+                                <Label>东方音乐</Label>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Width="30" Height="30">
+                                        <Image.Source>
+                                            <BitmapImage UriSource="image/test.png"></BitmapImage>
+                                        </Image.Source>
+                                    </Image>
+                                    <Label>创建者</Label>
+                                    <Label>创建时间</Label>
+                                </StackPanel>
+                                <Label>标签:</Label>
+                                <Label>简介:</Label>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1">
+                        <ListView>
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.Columns>
+                                        <GridViewColumn Header="列表并不能"></GridViewColumn>
+                                        <GridViewColumn Header="testn2ame"></GridViewColumn>
+                                    </GridView.Columns>
+                              
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                </Grid>
 
-
-                </StackPanel>
 
 
             </StackPanel>
