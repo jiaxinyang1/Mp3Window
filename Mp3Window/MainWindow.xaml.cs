@@ -17,7 +17,7 @@ namespace Mp3Window
         private Button CloseButton;
         private Button MinButton;
         private TextBlock WindowTitleTbl;
-
+        private Button MaxButton;
         public MainWindow()
         {
             this.Loaded += MainWindow_Loaded;
@@ -33,14 +33,20 @@ namespace Mp3Window
             {
                 CloseButton = MainWindowTemplate.FindName("CloseWinButton", this) as Button;
                 MinButton = MainWindowTemplate.FindName("MinWinButton", this) as Button;
-
+                MaxButton = MainWindowTemplate.FindName("MaxWinButton",this)as Button;
                 CloseButton.Click += CloseButton_Click;
                 MinButton.Click += MinButton_Click;
-
+                MaxButton.Click += MaxButton_Click;
                 WindowTitleTbl = MainWindowTemplate.FindName("WindowTitleTbl", this) as TextBlock;
             }
 
           }
+
+        private void MaxButton_Click(object sender, RoutedEventArgs e)
+        {
+           //最大化处理;
+        }
+
         private void CloseButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             Close();

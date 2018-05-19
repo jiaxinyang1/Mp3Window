@@ -26,7 +26,31 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <!--最大化按钮样式-->
+    <Style x:Key="WinMaxBtnStyle" TargetType="Button">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Width" Value="25" />
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="VerticalAlignment" Value="Top"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="MainBorder" Background=" Transparent">
+                    <Grid>
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="MainBorder" Property="Background" Value="Blue"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
 
+        </Style>
     <!--关闭按钮样式-->
     <Style x:Key="WinCloseBtnStyle" TargetType="Button">
         <Setter Property="SnapsToDevicePixels" Value="True"/>
@@ -54,17 +78,18 @@
 
     <!--窗体控件模板-->
     <ControlTemplate x:Key="MainWindowTemplate" TargetType="{x:Type Window}">
-        <Border BorderBrush="#2a927c" BorderThickness="1" Background="White">
+        <Border BorderBrush="LightBlue" BorderThickness="1" Background="White">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0" Background="#2a927c">
+                <Grid Grid.Row="0" Background="#FF338EFD">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
@@ -81,8 +106,17 @@
                             </StackPanel>
                         </Button.Content>
                     </Button>
+                    <Button x:Name="MaxWinButton" Grid.Column="3" Style="{StaticResource WinMaxBtnStyle}"
+                            VerticalContentAlignment="Center"
+                            HorizontalContentAlignment="Center">
+                        <Button.Content>
+                            <StackPanel>
+                                <Path Stroke="White" StrokeThickness="2" Data="M1,6 L18,6"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
 
-                    <Button x:Name="CloseWinButton" Grid.Column="3" Style="{StaticResource WinCloseBtnStyle}" Margin="2,0,8,0" 
+                    <Button x:Name="CloseWinButton" Grid.Column="4" Style="{StaticResource WinCloseBtnStyle}" Margin="2,0,8,0" 
                                         HorizontalContentAlignment="Center" 
                                         VerticalContentAlignment="Center">
                         <Button.Content>
