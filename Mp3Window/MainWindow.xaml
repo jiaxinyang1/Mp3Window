@@ -8,6 +8,59 @@
         Style="{StaticResource MainWindowStyle}"
         Title="MainWindow" Height="600" Width="1000">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Width="200"  Grid.Column="0" Background="WhiteSmoke">
+                <StackPanel Orientation="Horizontal">
+                    <Button>image</Button>
+                    <Label  FontFamily="Microsoft YaHei" FontSize="15">搜索</Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button>image</Button>
+                    <Label  FontFamily="Microsoft YaHei" FontSize="15">创建歌单</Label>
+                </StackPanel>
+                <Label FontSize="12" Foreground="#FFB6B6B6" xml:space="preserve">     我的歌单</Label>
+                <Label>假装是一些歌单</Label>
+                <Label>假装是一些歌单</Label>
+                <Label>假装是一些歌单</Label>
+                <Label>假装是一些歌单</Label>
+            </StackPanel>
+            <StackPanel  Grid.Column="1">
+                <StackPanel>
+
+
+                </StackPanel>
+
+
+            </StackPanel>
+        </Grid>
+        <DockPanel Grid.Row="1"  Height="50" LastChildFill="True" Background="White" >
+            <StackPanel>
+                <Button>封面</Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button>before</Button>
+                <Button>paly</Button>
+                <Button>next</Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                <Button>喜欢</Button>
+                <Button>音量</Button>
+            </StackPanel>
+            <StackPanel >
+                <DockPanel LastChildFill="False" >
+                    <Label >歌曲名称</Label>
+                    <Label  DockPanel.Dock="Right">播放进度</Label>
+                </DockPanel>
+                <Slider></Slider>
+            </StackPanel>
+        </DockPanel>
     </Grid>
 </Window>
