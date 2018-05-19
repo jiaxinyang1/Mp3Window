@@ -6,8 +6,8 @@
     <Style x:Key="WinMinBtnStyle" TargetType="Button">
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="OverridesDefaultStyle" Value="True"/>
-        <Setter Property="Width" Value="25"/>
-        <Setter Property="Height" Value="25"/>
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Height" Value="30"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -19,7 +19,10 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="MainBorder" Property="Background" Value="#33a58d"/>
+                            <Setter TargetName="MainBorder" Property="Background" Value="#FF0050B0"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseCaptured" Value="True">
+                            <Setter TargetName="MainBorder" Property="Background" Value="#FF52B0FF"></Setter>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -30,8 +33,8 @@
     <Style x:Key="WinMaxBtnStyle" TargetType="Button">
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="OverridesDefaultStyle" Value="True"/>
-        <Setter Property="Width" Value="25" />
-        <Setter Property="Height" Value="25"/>
+        <Setter Property="Width" Value="30" />
+        <Setter Property="Height" Value="30"/>
         <Setter Property="VerticalAlignment" Value="Top"></Setter>
         <Setter Property="Template">
             <Setter.Value>
@@ -43,7 +46,10 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="MainBorder" Property="Background" Value="Blue"/>
+                            <Setter TargetName="MainBorder" Property="Background" Value="#FF0050B0"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseCaptured" Value="True">
+                            <Setter TargetName="MainBorder" Property="Background" Value="#FF52B0FF"></Setter>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -55,8 +61,8 @@
     <Style x:Key="WinCloseBtnStyle" TargetType="Button">
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="OverridesDefaultStyle" Value="True"/>
-        <Setter Property="Width" Value="25"/>
-        <Setter Property="Height" Value="25"/>
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Height" Value="30"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -69,6 +75,9 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="MainBorder" Property="Background" Value="#d44c45"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseCaptured" Value="True">
+                            <Setter TargetName="MainBorder" Property="Background" Value="#FFF56969"></Setter>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -84,7 +93,6 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-
                 <Grid Grid.Row="0" Background="#FF338EFD">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -94,8 +102,8 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock x:Name="WindowTitleTbl" Grid.Column="0" Text="" FontFamily="Microsoft YaHei" VerticalAlignment="Center" 
-                                       FontSize="12" FontWeight="Bold" Margin="10,0" Foreground="White"/>
+                    <TextBlock x:Name="WindowTitleTbl" Grid.Column="0" Text="轻听音乐" FontFamily="Microsoft YaHei" VerticalAlignment="Center" 
+                                       FontSize="15"  Margin="10,0" Foreground="White"/>
 
                     <Button x:Name="MinWinButton" Grid.Column="2" Style="{StaticResource WinMinBtnStyle}" 
                                         VerticalContentAlignment="Center" 
@@ -111,7 +119,7 @@
                             HorizontalContentAlignment="Center">
                         <Button.Content>
                             <StackPanel>
-                                <Path Stroke="White" StrokeThickness="2" Data="M1,6 L18,6"/>
+                                <Path Stroke="White" StrokeThickness="2" Data="M5,5 L20,5 L20,15 L5,15 L5,4"/>
                             </StackPanel>
                         </Button.Content>
                     </Button>

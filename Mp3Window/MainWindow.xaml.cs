@@ -42,16 +42,52 @@ namespace Mp3Window
 
           }
 
+
+        /// <summary>
+        /// 最大化不覆盖任务栏
+        private bool isMaxWindow = false;//定义窗口的状态
+        Rect rcnormal;//定义一个全局rect记录还原状态下窗口的位置和大小。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MaxButton_Click(object sender, RoutedEventArgs e)
         {
-           //最大化处理;
+        
+            if (!isMaxWindow)
+            {
+                //最大化处理;
+                rcnormal = new Rect(this.Left, this.Top, this.Width, this.Height);//保存下当前位置与大小
+                Rect rc = SystemParameters.WorkArea;
+                this.Left = 0;//设置位置
+                this.Top = 0;
+                this.Width = rc.Width;
+                this.Height = rc.Height;
+                isMaxWindow = true;//设置窗口状态标识符
+            }
+            else
+            {
+                this.Left = rcnormal.Left;
+                this.Top = rcnormal.Top;
+                this.Width = rcnormal.Width;
+                this.Height = rcnormal.Height;
+                isMaxWindow = false; ;//设置窗口状态标识符
+            }
+          
         }
-
+        /// <summary>
+        /// 关闭窗口
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CloseButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             Close();
         }
-
+        /// <summary>
+        /// 最小化窗口
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MinButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             this.WindowState = System.Windows.WindowState.Minimized;

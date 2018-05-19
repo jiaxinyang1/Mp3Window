@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Mp3Window"
         mc:Ignorable="d"
         Style="{StaticResource MainWindowStyle}"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="1000">
     <Grid>
         
     </Grid>
