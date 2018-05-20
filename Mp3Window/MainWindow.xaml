@@ -42,19 +42,21 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
+                    <StackPanel Grid.Row="0" Grid.ColumnSpan="2" RenderTransformOrigin="0.5,0.5" >
                         <StackPanel.Background>
-                            <VisualBrush Stretch="None" TileMode="Tile">
+                            <VisualBrush Stretch="UniformToFill">
                                 <VisualBrush.Visual>
-                                    <Image Source="image/coverimage.jpg" Opacity="0.5" >
+                                    <Image Source="image/covertest.jpg" Opacity="0.5" Height="200" Stretch="UniformToFill">
+                                        <Image.Clip>
+                                            <RectangleGeometry Rect="0,0,200,100"></RectangleGeometry>
+                                        </Image.Clip>
                                         <Image.Effect>
-                                            <BlurEffect Radius="100"></BlurEffect>
+                                            <BlurEffect Radius="5"/>
                                         </Image.Effect>
-                                    </Image>
+                                    </Image >
                                 </VisualBrush.Visual>
                             </VisualBrush>
                         </StackPanel.Background>
-
                         <Label Margin="10,10" Foreground="#818181">歌单</Label>
                         <StackPanel Orientation="Horizontal">
                             <Image Height="200" Width="200" Margin="10,0,0,0" Stretch="UniformToFill" >
@@ -66,18 +68,21 @@
                                 </Image.Source>
                             </Image>
                             <StackPanel Margin="20,0,0,0">
-                                <Label FontSize="18">东方音乐</Label>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Width="30" Height="30">
+                                <Label FontSize="20" FontWeight="Black">东方音乐</Label>
+                                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                    <Image Width="30" Height="30" Stretch="UniformToFill">
+                                        <Image.Clip>
+                                            <EllipseGeometry RadiusX="15" RadiusY="15" Center="15,15" ></EllipseGeometry>
+                                        </Image.Clip>
                                         <Image.Source >
                                             <BitmapImage UriSource="image/test.png"></BitmapImage>
                                         </Image.Source>
                                     </Image>
-                                    <Label>创建者</Label>
-                                    <Label>创建时间</Label>
-                                </StackPanel>
-                                <Label>标签:</Label>
-                                <Label>简介:</Label>
+                                    <Label Margin="10,0,0,0">创作者</Label>
+                                    <Label Margin="10,0,0,0" Foreground="DarkGray">创建时间</Label>
+                                </StackPanel >
+                                <Label Margin="0,10,0,0">标签:</Label>
+                                <Label Margin="0,10,0,0">简介:</Label>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>
