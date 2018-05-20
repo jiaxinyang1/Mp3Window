@@ -18,28 +18,44 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Width="200"  Grid.Column="0" Background="WhiteSmoke">
-                <StackPanel Orientation="Horizontal">
-                    <Button>image</Button>
-                    <Label  FontFamily="Microsoft YaHei" FontSize="15">搜索</Label>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Button>image</Button>
-                    <Label  FontFamily="Microsoft YaHei" FontSize="15">创建歌单</Label>
-                </StackPanel>
+                <DockPanel  Style="{StaticResource NavStyle}"  >
+                    <Image Source="image/search.png" Height="20" Width="20" Margin="10,0,0,0"></Image>
+                    <Label  FontFamily="Microsoft YaHei" FontSize="15"  Margin="10,0,0,0">搜索</Label>
+                </DockPanel>
+                <DockPanel Style="{StaticResource NavStyle}"  >
+                    <Image Source="image/New.png" Height="20" Width="20" Margin="10,0,0,0"></Image>
+                    <Label  FontFamily="Microsoft YaHei" FontSize="15" Margin="10,0,0,0">创建歌单</Label>
+                </DockPanel>
                 <Label FontSize="12" Foreground="#FFB6B6B6" xml:space="preserve">     我的歌单</Label>
-                <Label>假装是一些歌单</Label>
+                <Label FontFamily="Microsoft YaHei" FontSize="15" >假装是一些歌单</Label>
                 <Label>假装是一些歌单</Label>
                 <Label>假装是一些歌单</Label>
                 <Label>假装是一些歌单</Label>
             </StackPanel>
             <StackPanel  Grid.Column="1">
                 <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="41*"/>
+                        <ColumnDefinition Width="225*"/>
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0">
-                        <Label Margin="10,10">歌单</Label>
+                    <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
+                        <StackPanel.Background>
+                            <VisualBrush Stretch="None" TileMode="Tile">
+                                <VisualBrush.Visual>
+                                    <Image Source="image/coverimage.jpg" Opacity="0.5" >
+                                        <Image.Effect>
+                                            <BlurEffect Radius="100"></BlurEffect>
+                                        </Image.Effect>
+                                    </Image>
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </StackPanel.Background>
+
+                        <Label Margin="10,10" Foreground="#818181">歌单</Label>
                         <StackPanel Orientation="Horizontal">
                             <Image Height="200" Width="200" Margin="10,0,0,0" Stretch="UniformToFill" >
                                 <Image.Clip>
@@ -50,10 +66,10 @@
                                 </Image.Source>
                             </Image>
                             <StackPanel Margin="20,0,0,0">
-                                <Label>东方音乐</Label>
+                                <Label FontSize="18">东方音乐</Label>
                                 <StackPanel Orientation="Horizontal">
                                     <Image Width="30" Height="30">
-                                        <Image.Source>
+                                        <Image.Source >
                                             <BitmapImage UriSource="image/test.png"></BitmapImage>
                                         </Image.Source>
                                     </Image>
@@ -65,7 +81,7 @@
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>
-                    <StackPanel Grid.Row="1">
+                    <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
                         <ListView>
                             <ListView.View>
                                 <GridView>
@@ -73,25 +89,56 @@
                                         <GridViewColumn Header="列表并不能"></GridViewColumn>
                                         <GridViewColumn Header="testn2ame"></GridViewColumn>
                                     </GridView.Columns>
-                              
                                 </GridView>
                             </ListView.View>
                         </ListView>
                     </StackPanel>
                 </Grid>
-
-
-
             </StackPanel>
         </Grid>
         <DockPanel Grid.Row="1"  Height="50" LastChildFill="True" Background="White" >
-            <StackPanel>
-                <Button>封面</Button>
+            <StackPanel  Width="50">
+                <Image Height="50" Width="50"  Stretch="UniformToFill" >
+                    <Image.Clip>
+                        <RectangleGeometry Rect="0,0,50,50"></RectangleGeometry>
+                    </Image.Clip>
+                    <Image.Source>
+                        <BitmapImage UriSource="image/coverimage.jpg"/>
+                    </Image.Source>
+                </Image>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Button>before</Button>
-                <Button>paly</Button>
-                <Button>next</Button>
+                <Button Style="{StaticResource ButtonOverStyle}" >
+                    <Button.Content>
+                        <Image Width="40"  Height="38"  Stretch="Fill"  Margin="0,5,0,0">
+                            <Image.Source>
+                                <BitmapImage UriSource="image/before.png"/>
+                            </Image.Source>
+                        </Image>
+                    </Button.Content>
+                </Button>
+                <Button Style="{StaticResource ButtonOverStyle}" >
+                    <Button.Content>
+                        <Image Width="40"  Height="38" Stretch="Fill"  Margin="0,5,0,0">
+                            <Image.Source>
+                                <BitmapImage UriSource="image/play.png"/>
+                            </Image.Source>
+                        </Image>
+                    </Button.Content>
+                </Button>
+                <Button Style="{StaticResource ButtonOverStyle}" >
+                    <Button.Content>
+                        <StackPanel Width="50">
+                            <Image Width="40"  Height="38"  Stretch="Fill" Margin="0,5,0,0" >
+                                <Image.Source>
+                                    <BitmapImage UriSource="image/next.png"/>
+                                </Image.Source>
+                            </Image>
+
+                        </StackPanel>
+
+                    </Button.Content>
+                </Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
                 <Button>喜欢</Button>

@@ -117,13 +117,13 @@
                     <Button x:Name="MaxWinButton" Grid.Column="3" Style="{StaticResource WinMaxBtnStyle}"
                             VerticalContentAlignment="Center"
                             HorizontalContentAlignment="Center">
+
                         <Button.Content>
                             <StackPanel>
                                 <Path Stroke="White" StrokeThickness="2" Data="M5,5 L20,5 L20,15 L5,15 L5,4"/>
                             </StackPanel>
                         </Button.Content>
                     </Button>
-
                     <Button x:Name="CloseWinButton" Grid.Column="4" Style="{StaticResource WinCloseBtnStyle}" Margin="2,0,8,0" 
                                         HorizontalContentAlignment="Center" 
                                         VerticalContentAlignment="Center">
