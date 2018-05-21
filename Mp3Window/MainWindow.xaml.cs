@@ -104,6 +104,14 @@ namespace Mp3Window
             base.OnMouseLeftButtonDown(e);
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+   
+            string xaml1 = System.Windows.Markup.XamlWriter.Save(list);
+            StackPanel oPanel= System.Windows.Markup.XamlReader.Parse(xaml1) as StackPanel;
+     
+            ListPanel.Children.Add(oPanel ?? throw new InvalidOperationException());
+        }
     }
 
 
