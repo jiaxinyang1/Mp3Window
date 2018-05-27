@@ -5,10 +5,51 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 
 namespace Mp3Window
 {
+
+    
+    public class PopopHelper
+    {
+        //实现了浮动层跟随移动
+    public static DependencyObject GetPopupPlacementTarget(DependencyObject obj)
+        {
+            return (DependencyObject)obj.GetValue(PopupPlacementTargetProperty);
+        }
+
+        public static void SetPopupPlacementTarget(DependencyObject obj, DependencyObject value)
+        {
+            obj.SetValue(PopupPlacementTargetProperty, value);
+        }
+
+        // Using a DependencyProperty as the backing store for PopupPlacementTarget.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty PopupPlacementTargetProperty =
+            DependencyProperty.RegisterAttached("PopupPlacementTarget", typeof(DependencyObject), typeof(PopopHelper), new PropertyMetadata(null, OnPopupPlacementTargetChanged));
+
+        private static void OnPopupPlacementTargetChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.NewValue != null)
+            {
+                DependencyObject popupPopupPlacementTarget = e.NewValue as DependencyObject;
+                Popup pop = d as Popup;
+
+                Window w = Window.GetWindow(popupPopupPlacementTarget);
+                if (null != w)
+                {
+                    w.LocationChanged += delegate
+                    {
+                        var offset = pop.HorizontalOffset;
+                        pop.HorizontalOffset = offset + 1;
+                        pop.HorizontalOffset = offset;
+                    };
+                }
+            }
+        }
+
+    }
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
@@ -21,6 +62,7 @@ namespace Mp3Window
         public MainWindow()
         {
             this.Loaded += MainWindow_Loaded;
+   
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -42,7 +84,7 @@ namespace Mp3Window
 
           }
 
-
+        
         /// <summary>
         /// 最大化不覆盖任务栏
         private bool isMaxWindow = false;//定义窗口的状态
@@ -55,6 +97,7 @@ namespace Mp3Window
         
             if (!isMaxWindow)
             {
+                
                 //最大化处理;
                 rcnormal = new Rect(this.Left, this.Top, this.Width, this.Height);//保存下当前位置与大小
                 Rect rc = SystemParameters.WorkArea;
@@ -90,6 +133,7 @@ namespace Mp3Window
         /// <param name="e"></param>
         private void MinButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+         
             this.WindowState = System.Windows.WindowState.Minimized;
         }
 
@@ -103,7 +147,8 @@ namespace Mp3Window
 
             base.OnMouseLeftButtonDown(e);
         }
-
+       /* //添加歌曲条目的一个方法
+        //对xaml进行深度复制
         private void Button_Click(object sender, RoutedEventArgs e)
         {
    
@@ -111,6 +156,14 @@ namespace Mp3Window
             StackPanel oPanel= System.Windows.Markup.XamlReader.Parse(xaml1) as StackPanel;
      
             ListPanel.Children.Add(oPanel ?? throw new InvalidOperationException());
+        }*/
+
+
+        //显示浮动层
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Popup1.IsOpen = false;
+            Popup1.IsOpen = true;
         }
     }
 

@@ -27,10 +27,10 @@
                     <Label  FontFamily="Microsoft YaHei" FontSize="15" Margin="10,0,0,0">创建歌单</Label>
                 </DockPanel>
                 <Label FontSize="12" Foreground="#FFB6B6B6" xml:space="preserve">     我的歌单</Label>
-                <Label FontFamily="Microsoft YaHei" FontSize="15" >假装是一些歌单</Label>
-                <Label>假装是一些歌单</Label>
-                <Label>假装是一些歌单</Label>
-                <Label>假装是一些歌单</Label>
+                <Label FontFamily="Microsoft YaHei" FontSize="15" >我喜欢的音乐</Label>
+                <Label FontFamily="Microsoft YaHei" FontSize="15" >英语歌曲</Label>
+                <Label FontFamily="Microsoft YaHei" FontSize="15" >快节奏歌曲</Label>
+                <Label FontFamily="Microsoft YaHei" FontSize="15" >纯音乐</Label>
             </StackPanel>
             <StackPanel  Grid.Column="1">
                 <Grid>
@@ -77,7 +77,7 @@
                                     <Label Margin="10,0,0,0">创作者</Label>
                                     <Label Margin="10,0,0,0" Foreground="DarkGray">创建时间</Label>
                                 </StackPanel >
-                                <Label Margin="0,10,0,0">标签:</Label>
+                                <Label Margin="0,10,0,0" x:Name="TagLabel">标签:</Label>
                                 <Label Margin="0,10,0,0">简介:</Label>
                             </StackPanel>
                         </StackPanel>
@@ -146,7 +146,21 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
                 
-                <Button>音量</Button>
+                <Button Click="Button_Click_1" x:Name="voiceButton" Width="50" Margin="10,0,10,0" Style="{StaticResource ButtonOverStyle}">
+                 <Button.Content>
+                     <Image Source="image/voice.png" Width="20" Height="20" Margin="15"></Image>
+                 </Button.Content>
+                    </Button>
+                <Popup x:Name="Popup1" local:PopopHelper.PopupPlacementTarget="{Binding ElementName=voiceButton}"  PopupAnimation="Fade" 
+                       HorizontalOffset="23"
+                       VerticalOffset="-160">
+                    <Border BorderBrush="LightBlue" BorderThickness="3">
+                        <StackPanel Orientation="Vertical">
+                            <Slider Orientation="Vertical" Height="100" Background="White"></Slider>
+                        </StackPanel>
+                    </Border>
+                  
+                </Popup>
             </StackPanel>
             <StackPanel >
                 <DockPanel LastChildFill="False" >

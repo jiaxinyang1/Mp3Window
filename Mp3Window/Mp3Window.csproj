@@ -91,6 +91,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MusicList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -151,6 +152,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="image\test1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image\voice.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
