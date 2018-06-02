@@ -67,7 +67,7 @@ namespace Mp3Window
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-
+      
             ControlTemplate MainWindowTemplate
                 = Application.Current.Resources["MainWindowTemplate"] as ControlTemplate;
 
@@ -117,6 +117,7 @@ namespace Mp3Window
             }
           
         }
+        
         /// <summary>
         /// 关闭窗口
         /// </summary>
@@ -162,6 +163,7 @@ namespace Mp3Window
         //显示浮动层
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+
             Popup1.IsOpen = false;
             Popup1.IsOpen = true;
         }
