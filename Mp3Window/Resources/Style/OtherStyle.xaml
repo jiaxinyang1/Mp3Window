@@ -133,11 +133,51 @@
         </Setter>
     </Style>
 
+
+
  <!--隐藏列表标题栏-->
     <Style TargetType="{x:Type GridViewColumnHeader}">
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="FrameworkElement.Visibility" Value="Hidden"/>
     </Style>
-    <!--隔行背景颜色交替样式-->
-    <local:ListViewItemStyleSelector x:Key="MyStyleSelector"></local:ListViewItemStyleSelector>
+ 
+ 
+    <!--设置每一行的样式-->
+    <Style TargetType="{x:Type ListViewItem}">
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="Foreground" Value="Gray"></Setter>
+        <Setter Property="Padding" Value=" 5"></Setter>
+        <Setter Property="Template" >
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+                        <GridViewRowPresenter VerticalAlignment="Center" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" TargetName="Bd" Value="DarkGray"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderThickness" TargetName="Bd" Value="2"></Setter>
+                            <Setter Property="Background" TargetName="Bd" Value="LightGray"></Setter>
+                        </Trigger>
+                        <Trigger Property="Height" Value="Auto">
+                            <Setter Property="MinHeight" Value="35" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+
+    </Style>
+    <!--暂时废弃
+    隔行背景颜色交替样式-->
+    <!--<local:ListViewItemStyleSelector x:Key="MyStyleSelector"></local:ListViewItemStyleSelector>-->
+
+   
+  
 </ResourceDictionary>
