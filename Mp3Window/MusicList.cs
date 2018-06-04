@@ -10,15 +10,29 @@ namespace Mp3Window
 {
     public class Music
     {
+        public Music()
+        {
+        }
+        //构造函数
+        public Music(string name, string author, string time, string url)
+        {
+            Name = name;
+            Author = author;
+            Time = time;
+            Url = url;
+        }
+
         public string Name { get; set; }//歌曲名称
         public  string Author { get; set; }//歌手
         public  string Time { get; set; }//歌曲时长
         public string Url { get; set; }// 歌曲路径
         //else...
-
+        
     }
     public class MusicList
     {
+      
+
         public string Author { get; set; }//创建者
 
         public string Time { get; set; }//创建时间
@@ -33,7 +47,24 @@ namespace Mp3Window
 
         public List<Music> Songs { get; set; }//歌曲
 
+        /// <summary>
+        /// 一些初始化工作
+        /// </summary>
+        public MusicList()
+        {
+            Songs = new List<Music>();
+        }
+        //构造函数
+        public MusicList(string author, string time, string tag, string brief, string name, string coverUrl) : this()
+        {
 
+            Author = author;
+            Time = time;
+            Tag = tag;
+            Brief = brief;
+            Name = name;
+            CoverUrl = coverUrl;
+        }
         /// <summary>
         /// 设置歌单名称
         /// </summary>
@@ -69,17 +100,17 @@ namespace Mp3Window
             Uri bUri = new Uri(CoverUrl);
             url.UriSource = bUri;     
         }
-
-        public void AddMusic(StackPanel father, StackPanel item)
+        /// <summary>
+        /// 把歌曲信息添加到ListView中
+        /// </summary>
+        /// <param name="listView"></param>
+        public void AddMusic(ListView listView)
         {
             
             foreach (var song in Songs)
             {
-
-      
+                listView.Items.Add(new {SongName = song.Name, Singer = song.Author, Time = song.Time});
             }
-    
         }
-
     }
 }

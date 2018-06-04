@@ -13,23 +13,9 @@ using System.Windows.Media;
 
 namespace Mp3Window
 {
-
-    class Trsm 
-    {
-        private string Name;
-        private string v;
-        private string c;
-        private int d;
-
-        public Trsm(string a, string v, string c)
-        {
-            this.Name = a;
-            this.v = v;
-            this.c = c;
-        }
-
     
-    }
+
+   
 
     public class PopopHelper
     {
@@ -77,11 +63,11 @@ namespace Mp3Window
         private Button CloseButton;
         private Button MinButton;
         private TextBlock WindowTitleTbl;
-        private Button MaxButton;
+        private Button MaxButton; 
         public MainWindow()
         {
             this.Loaded += MainWindow_Loaded;
-
+            
 
         }
 
@@ -102,6 +88,10 @@ namespace Mp3Window
                 WindowTitleTbl = MainWindowTemplate.FindName("WindowTitleTbl", this) as TextBlock;
             }
 
+
+            //******歌单初始化
+
+     
           }
 
         
@@ -153,17 +143,17 @@ namespace Mp3Window
         /// <param name="sender"></param>
         /// <param name="e"></param>
       
+
         private void MinButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-      
-             Label test  =new Label();
-            test.Content = "test";
+
+
+          
             listView1.Items.Add(new {SongName = "男",Singer="hhhh",Time="11:20"});
             listView1.Items.Add(new { SongName = "weq", Singer = "2h", Time = "11:20" });
             listView1.Items.Add(new { SongName = "2", Singer = "hhhh", Time = "11:20" });
             listView1.Items.Add(new { SongName = "fdf", Singer = "fqhh", Time = "11:20" });
-
-
+  
             this.WindowState = System.Windows.WindowState.Minimized;
         }
 
