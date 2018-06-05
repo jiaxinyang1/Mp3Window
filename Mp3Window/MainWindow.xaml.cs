@@ -186,6 +186,14 @@ namespace Mp3Window
             Popup1.IsOpen = false;
             Popup1.IsOpen = true;
         }
+
+        private void Label_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Search search =new Search();
+           MusicListPage musicListPage=new MusicListPage();
+
+            ContentControl.Content = new Frame() {Content = search};
+        }
     }
 
 
