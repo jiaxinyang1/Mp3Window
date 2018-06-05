@@ -49,11 +49,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Lsj.Util, Version=1.2.2.0, Culture=neutral, PublicKeyToken=0f183bc795c57a20, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lsj.Util.1.2.2\lib\net40\Lsj.Util.dll</HintPath>
+    <Reference Include="Lsj.Util, Version=1.2.4.0, Culture=neutral, PublicKeyToken=0f183bc795c57a20, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lsj.Util.1.2.4\lib\net40\Lsj.Util.dll</HintPath>
     </Reference>
-    <Reference Include="Lsj.Util.JSON, Version=1.2.6.0, Culture=neutral, PublicKeyToken=0f183bc795c57a20, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lsj.Util.JSON.1.2.6\lib\net40\Lsj.Util.JSON.dll</HintPath>
+    <Reference Include="Lsj.Util.JSON, Version=1.2.8.0, Culture=neutral, PublicKeyToken=0f183bc795c57a20, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lsj.Util.JSON.1.2.8\lib\net40\Lsj.Util.JSON.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

@@ -98,6 +98,7 @@ namespace Mp3Window
         {
             Uri bUri = new Uri(CoverUrl);
             url.UriSource = bUri;     
+
         }
         /// <summary>
         /// 把歌曲信息添加到ListView中

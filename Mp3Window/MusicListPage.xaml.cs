@@ -25,16 +25,53 @@ namespace Mp3Window
     {
         //所有歌单信息
         List<MusicList> MusicLists =new List<MusicList>();
-        //当前显示歌单
-        private string electMusicList
+     
         //指定父窗口的指针
         private MainWindow ParentWindow;
+
+        //被选中的歌曲
+        private Music selcetMusic;
+
+        //正在播放的歌曲
+        private Music song;
         public MusicListPage()
         {
             InitializeComponent();
+            Init();
+        }
+        /// <summary>
+        /// 初始化相关
+        /// </summary>
+        public void Init()
+        {
+            //先根据json把歌单信息转成class 未做
+
+            /***********************************************/
+            //查找到被选中的歌单
+            
+            MusicList selectList = FindElectMusicList();
+            
+            //设置相关信息
+            selectList.SetName(ListName);
+
+            selectList.SetAuthor(Creator);
+            selectList.SetTime(CreatTime);
+
+            selectList.SetTag(Tag);
+            selectList.SetBrief(Brief);
            
+            selectList.SetCoverUrl(CoverImage);
+            selectList.SetCoverUrl(BackImage);
+            selectList.SetCoverUrl(CreatorImage);
+            //添加歌曲
+            selectList.AddMusic(MusicListView);
 
         }
+
+
+
+
+
         /// <summary>
         ///  按名称找到被选中的歌单
         /// </summary>
@@ -56,3 +93,4 @@ namespace Mp3Window
       
     }
 }
+

@@ -19,13 +19,16 @@
                     <StackPanel.Background>
                         <VisualBrush Stretch="UniformToFill">
                             <VisualBrush.Visual>
-                                <Image Source="image/covertest.jpg" Opacity="0.5" Height="200" Stretch="UniformToFill" x:Name="TopBackGoundImage">
+                                <Image Opacity="0.5" Height="200" Stretch="UniformToFill" >
                                     <Image.Clip>
                                         <RectangleGeometry Rect="0,0,200,100"></RectangleGeometry>
                                     </Image.Clip>
                                     <Image.Effect>
                                         <BlurEffect Radius="5"/>
                                     </Image.Effect>
+                                    <Image.Source>
+                                        <BitmapImage UriSource="image/covertest.jpg" x:Name="BackImage"></BitmapImage>
+                                    </Image.Source>
                                 </Image >
                             </VisualBrush.Visual>
                         </VisualBrush>
@@ -37,11 +40,11 @@
                                 <RectangleGeometry Rect="0,0,200,200"></RectangleGeometry>
                             </Image.Clip>
                             <Image.Source>
-                                <BitmapImage UriSource="image/covertest.jpg" />
+                                <BitmapImage UriSource="image/covertest.jpg" x:Name="CoverImage" />
                             </Image.Source>
                         </Image>
                         <StackPanel Margin="20,0,0,0">
-                            <Label FontSize="20" FontWeight="Black" x:Name="LabelListName">东方音乐</Label>
+                            <Label FontSize="20" FontWeight="Black" x:Name="ListName">东方音乐</Label>
                             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                                 <Image Width="30" Height="30" Stretch="UniformToFill"  >
                                     <Image.Clip>
@@ -54,8 +57,8 @@
                                 <Label Margin="10,0,0,0" x:Name="Creator">创作者</Label>
                                 <Label Margin="10,0,0,0" Foreground="DarkGray" x:Name="CreatTime">创建时间</Label>
                             </StackPanel >
-                            <Label Margin="0,10,0,0" x:Name="TagLabel">标签:</Label>
-                            <Label Margin="0,10,0,0" x:Name="BriefName">简介:</Label>
+                            <Label Margin="0,10,0,0" x:Name="Tag">标签:</Label>
+                            <Label Margin="0,10,0,0" x:Name="Brief">简介:</Label>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
@@ -88,9 +91,7 @@
                                     </GridView>
                                 </ListView.View>
                             </ListView>
-
                         </DockPanel>
-
                     </StackPanel>
                 </Grid>
             </Grid>
