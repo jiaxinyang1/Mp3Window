@@ -14,16 +14,15 @@ namespace Mp3Window
         {
         }
         //构造函数
-        public Music(string name, string author, string time, string url)
+        public Music(string songName, string singer, string time, string url)
         {
-            Name = name;
-            Author = author;
+            SongName = songName;
+            Singer = singer;
             Time = time;
             Url = url;
         }
-
-        public string Name { get; set; }//歌曲名称
-        public  string Author { get; set; }//歌手
+        public string SongName { get; set; }//歌曲名称
+        public  string Singer { get; set; }//歌手
         public  string Time { get; set; }//歌曲时长
         public string Url { get; set; }// 歌曲路径
         //else...
@@ -109,7 +108,7 @@ namespace Mp3Window
             
             foreach (var song in Songs)
             {
-                listView.Items.Add(new {SongName = song.Name, Singer = song.Author, Time = song.Time});
+                listView.Items.Add(song);
             }
         }
     }

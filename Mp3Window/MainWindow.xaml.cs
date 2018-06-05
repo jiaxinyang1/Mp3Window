@@ -13,9 +13,16 @@ using System.Windows.Media;
 
 namespace Mp3Window
 {
-    
 
-   
+
+    public class Emp
+    {
+        public string Name { get; set; }
+
+        public int Age { get; set; }
+
+        public string City { get; set; }
+    }
 
     public class PopopHelper
     {
@@ -74,6 +81,8 @@ namespace Mp3Window
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
       
+           
+            
             ControlTemplate MainWindowTemplate
                 = Application.Current.Resources["MainWindowTemplate"] as ControlTemplate;
 
@@ -89,10 +98,16 @@ namespace Mp3Window
             }
 
 
+            MusicListPage musicListPage = new MusicListPage();
+            ContentControl.Content = new Frame() {Content = musicListPage};
             //******歌单初始化
-
-     
-          }
+            Emp test= new Emp();
+            test.Name = "aaa";
+            MusicListListView.Items.Add(new Emp{Name = "eeee"});
+            MusicListListView.Items.Add(test);
+  
+    
+        }
 
         
         /// <summary>
@@ -149,10 +164,10 @@ namespace Mp3Window
 
 
           
-            listView1.Items.Add(new {SongName = "男",Singer="hhhh",Time="11:20"});
-            listView1.Items.Add(new { SongName = "weq", Singer = "2h", Time = "11:20" });
-            listView1.Items.Add(new { SongName = "2", Singer = "hhhh", Time = "11:20" });
-            listView1.Items.Add(new { SongName = "fdf", Singer = "fqhh", Time = "11:20" });
+            //listView1.Items.Add(new {SongName = "男",Singer="hhhh",Time="11:20"});
+            //listView1.Items.Add(new { SongName = "weq", Singer = "2h", Time = "11:20" });
+            //listView1.Items.Add(new { SongName = "2", Singer = "hhhh", Time = "11:20" });
+            //listView1.Items.Add(new { SongName = "fdf", Singer = "fqhh", Time = "11:20" });
   
             this.WindowState = System.Windows.WindowState.Minimized;
         }

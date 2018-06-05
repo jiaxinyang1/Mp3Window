@@ -171,13 +171,10 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-
-
     </Style>
     <!--暂时废弃
     隔行背景颜色交替样式-->
     <!--<local:ListViewItemStyleSelector x:Key="MyStyleSelector"></local:ListViewItemStyleSelector>-->
 
    
-  
 </ResourceDictionary>

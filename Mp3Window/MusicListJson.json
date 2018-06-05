@@ -1,0 +1,25 @@
+[
+  {
+    "id": "1",
+    "Author": "Hakurei",
+    "Time": "",
+    "Tag": "",
+    "Brief": "",
+    "Name": "",
+    "CoverUrl": ""
+
+  }
+]
+     //public string Author { get; set; }//创建者
+
+     //   public string Time { get; set; }//创建时间
+
+     //   public string Tag { get; set; } //标签
+
+     //   public string Brief { get; set; }//简介
+
+     //   public string Name { get; set; }//歌单名称
+
+     //   public string CoverUrl { get; set; }//封面路径
+
+     //   public List<Music> Songs { get; set; }//歌曲
