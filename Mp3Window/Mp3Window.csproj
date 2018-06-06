@@ -78,6 +78,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Data.cs" />
     <Compile Include="MusicListPage.xaml.cs">
       <DependentUpon>MusicListPage.xaml</DependentUpon>
     </Compile>
@@ -135,6 +136,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
+    <None Include="data\LeftList.json" />
     <None Include="MusicListJson.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

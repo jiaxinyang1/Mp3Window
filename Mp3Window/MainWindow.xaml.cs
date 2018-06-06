@@ -10,20 +10,26 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
+using Lsj.Util.JSON;
 
 namespace Mp3Window
 {
-
-
-    public class Emp
+    //歌单名字
+    public class ListName
     {
         public string Name { get; set; }
 
-        public int Age { get; set; }
+        public ListName()
+        {
 
-        public string City { get; set; }
+        }
+        public ListName(string name)
+        {
+            Name = name;
+        }
+
+        
     }
-
     public class PopopHelper
     {
         //实现了浮动层跟随移动
@@ -70,7 +76,11 @@ namespace Mp3Window
         private Button CloseButton;
         private Button MinButton;
         private TextBlock WindowTitleTbl;
-        private Button MaxButton; 
+        private Button MaxButton;
+
+
+        private List<ListName> MusicListName;
+
         public MainWindow()
         {
             this.Loaded += MainWindow_Loaded;
@@ -98,18 +108,45 @@ namespace Mp3Window
             }
 
 
-            MusicListPage musicListPage = new MusicListPage();
-            ContentControl.Content = new Frame() {Content = musicListPage};
+       /*     MusicListPage musicListPage = new MusicListPage();
+            ContentControl.Content = new Frame() {Content = musicListPage};*/
             //******歌单初始化
-            Emp test= new Emp();
-            test.Name = "aaa";
-            MusicListListView.Items.Add(new Emp{Name = "eeee"});
-            MusicListListView.Items.Add(test);
-  
-    
+        /*    MusicListName = new List<ListName>();
+            MusicListName.Add(new ListName("徐梦圆 热门50单曲"));
+            MusicListName.Add(new ListName("网易云日推"));
+            MusicListName.Add(new ListName("【东方纯音乐】春至之日，萬花盛放"));
+            SaveData();*/
+              InitLeftMusicListView();
+
+
+        }
+        /// <summary>
+        /// 初始化左边导航栏ListView
+        /// 一些异常处理待做
+        /// </summary>
+        public  void InitLeftMusicListView()
+        {
+
+            string text = "";
+            Data.Read(ref text, @"data\LeftList.json");
+            MusicListName = JSONParser.Parse<List<ListName>>(text);
+            foreach (var musicname in MusicListName)
+            {
+                MusicListListView.Items.Add(musicname);
+            }
+
+        }
+        /// <summary>
+        /// 信息存盘工作
+        /// 一些异常处理待做
+        /// </summary>
+        public void SaveData()
+        {
+            string text= JSONConverter.ConvertToJSONString(MusicListName);
+            Data.Save(ref text,@"data\LeftList.json");
         }
 
-        
+
         /// <summary>
         /// 最大化不覆盖任务栏
         private bool isMaxWindow = false;//定义窗口的状态
@@ -205,9 +242,26 @@ namespace Mp3Window
         private void Label_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Search search =new Search();
-           MusicListPage musicListPage=new MusicListPage();
+  
 
             ContentControl.Content = new Frame() {Content = search};
+        }
+        /// <summary>
+        /// 歌单导航栏选择项目被改变
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MusicListListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            string text = (MusicListListView.SelectedItem as ListName)?.Name;
+
+              var musicListPage = new MusicListPage();
+               musicListPage.selectName = text;
+              musicListPage.Init();
+
+           
+             ContentControl.Content = new Frame() { Content = musicListPage }; 
         }
     }
 

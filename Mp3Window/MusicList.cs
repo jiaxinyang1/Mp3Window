@@ -83,12 +83,12 @@ namespace Mp3Window
         /// 设置标签内容
         /// </summary>
         /// <param name="label"></param>
-        public void SetTag(Label label)  {  label.Content = Tag;  }
+        public void SetTag(Label label)  {  label.Content += Tag;  }
         /// <summary>
         /// 设置简介内容
         /// </summary>
         /// <param name="label"></param>
-        public void SetBrief(Label label)  {  label.Content = Brief;  }
+        public void SetBrief(Label label)  {  label.Content += Brief;  }
 
         /// <summary>
         /// 设置封面路径
