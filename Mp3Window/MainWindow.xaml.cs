@@ -108,17 +108,18 @@ namespace Mp3Window
             }
 
 
-       /*     MusicListPage musicListPage = new MusicListPage();
-            ContentControl.Content = new Frame() {Content = musicListPage};*/
-            //******歌单初始化
-        /*    MusicListName = new List<ListName>();
-            MusicListName.Add(new ListName("徐梦圆 热门50单曲"));
-            MusicListName.Add(new ListName("网易云日推"));
-            MusicListName.Add(new ListName("【东方纯音乐】春至之日，萬花盛放"));
-            SaveData();*/
+              //初始化左边的歌单名称列表
               InitLeftMusicListView();
 
 
+        }
+
+        public void AddMusicListName(string name)
+        {
+            ListName  buffer =new ListName(name);
+            MusicListName.Add(buffer);//添加到储存数据的list中
+            MusicListListView.Items.Add(buffer);//添加到ui上listview
+            SaveData();//保存一下数据
         }
         /// <summary>
         /// 初始化左边导航栏ListView
@@ -200,11 +201,7 @@ namespace Mp3Window
         {
 
 
-          
-            //listView1.Items.Add(new {SongName = "男",Singer="hhhh",Time="11:20"});
-            //listView1.Items.Add(new { SongName = "weq", Singer = "2h", Time = "11:20" });
-            //listView1.Items.Add(new { SongName = "2", Singer = "hhhh", Time = "11:20" });
-            //listView1.Items.Add(new { SongName = "fdf", Singer = "fqhh", Time = "11:20" });
+     
   
             this.WindowState = System.Windows.WindowState.Minimized;
         }
@@ -219,17 +216,7 @@ namespace Mp3Window
 
             base.OnMouseLeftButtonDown(e);
         }
-       /* //添加歌曲条目的一个方法
-        //对xaml进行深度复制
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-   
-            string xaml1 = System.Windows.Markup.XamlWriter.Save(list);
-            StackPanel oPanel= System.Windows.Markup.XamlReader.Parse(xaml1) as StackPanel;
-     
-            ListPanel.Children.Add(oPanel ?? throw new InvalidOperationException());
-        }*/
-
+  
 
         //显示浮动层
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -237,6 +224,7 @@ namespace Mp3Window
 
             Popup1.IsOpen = false;
             Popup1.IsOpen = true;
+           
         }
 
         private void Label_MouseDown(object sender, MouseButtonEventArgs e)

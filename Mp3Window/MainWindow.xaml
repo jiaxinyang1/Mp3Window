@@ -27,10 +27,10 @@
                     <Label  FontFamily="Microsoft YaHei" FontSize="15" Margin="10,0,0,0">创建歌单</Label>
                 </DockPanel>
                 <Label FontSize="12" Foreground="#FFB6B6B6" xml:space="preserve">     我的歌单</Label>
-                <ListView x:Name="MusicListListView" ItemsSource="{Binding}" BorderThickness="0" Background="Transparent" SelectionChanged="MusicListListView_SelectionChanged" >
+                <ListView x:Name="MusicListListView"  ItemsSource="{Binding}" BorderThickness="0" Background="Transparent"  SelectionChanged="MusicListListView_SelectionChanged" >
                     <ListView.View >
-                        <GridView >
-                            <GridViewColumn Header="" >
+                        <GridView  >
+                            <GridViewColumn Header=""  >
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <DockPanel>

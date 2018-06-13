@@ -82,6 +82,7 @@
     <Compile Include="MusicListPage.xaml.cs">
       <DependentUpon>MusicListPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MusicPlay.cs" />
     <Compile Include="Resources\Style\ListViewItemStyleSelector.cs" />
     <Compile Include="Search.xaml.cs">
       <DependentUpon>Search.xaml</DependentUpon>
@@ -135,8 +136,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram2.cd" />
     <None Include="data\LeftList.json" />
     <None Include="MusicListJson.json" />
     <None Include="packages.config" />

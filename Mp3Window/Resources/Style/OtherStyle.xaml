@@ -139,9 +139,11 @@
     <Style TargetType="{x:Type GridViewColumnHeader}">
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="FrameworkElement.Visibility" Value="Hidden"/>
+
     </Style>
- 
- 
+    
+
+
     <!--设置每一行的样式-->
     <Style TargetType="{x:Type ListViewItem}">
         <Setter Property="FontSize" Value="14"></Setter>

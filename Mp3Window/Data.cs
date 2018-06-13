@@ -26,6 +26,7 @@ namespace Mp3Window
             if (text == null) throw new ArgumentNullException(nameof(text));
             StreamReader sr = File.OpenText(path);
             text = sr.ReadToEnd();
+            sr.Close();
         }
     }
 

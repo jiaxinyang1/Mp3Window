@@ -46,6 +46,8 @@ namespace Mp3Window
 
         public List<Music> Songs { get; set; }//歌曲
 
+
+
         /// <summary>
         /// 一些初始化工作
         /// </summary>
