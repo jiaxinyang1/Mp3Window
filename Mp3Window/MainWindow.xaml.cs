@@ -81,6 +81,7 @@ namespace Mp3Window
 
         private List<ListName> MusicListName;
 
+        private MusicPlay Play;
         public MainWindow()
         {
             this.Loaded += MainWindow_Loaded;
@@ -250,6 +251,16 @@ namespace Mp3Window
 
            
              ContentControl.Content = new Frame() { Content = musicListPage }; 
+        }
+        /// <summary>
+        /// 播放按钮被按下
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Play= new MusicPlay();
+            Play.Play();
         }
     }
 

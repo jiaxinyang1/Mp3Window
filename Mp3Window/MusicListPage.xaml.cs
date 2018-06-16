@@ -36,6 +36,7 @@ namespace Mp3Window
 
         //正在播放的歌曲
         private Music song;
+
         public MusicListPage()
         {
             InitializeComponent();       
@@ -79,6 +80,23 @@ namespace Mp3Window
             MusicLists.Add(item);
             SaveData();//保存一下数据
         }
+    
+        /// <summary>
+        ///  按名称找到被选中的歌单
+        /// </summary>
+        /// <returns></returns>
+        public MusicList FindElectMusicList()
+        {
+        foreach (var musicList in MusicLists )
+            {
+                if (musicList.Name.Equals(selectName))
+                {
+                    return musicList;
+                }
+            }
+            return null;
+        }
+
         /// <summary>
         /// 保存到json文件
         /// </summary>
@@ -96,22 +114,6 @@ namespace Mp3Window
             Data.Read(ref text, @"data\MusicListView.json");
             MusicLists = JSONParser.Parse<List<MusicList>>(text);
         }
-        /// <summary>
-        ///  按名称找到被选中的歌单
-        /// </summary>
-        /// <returns></returns>
-        public MusicList FindElectMusicList()
-        {
-        foreach (var musicList in MusicLists )
-            {
-                if (musicList.Name.Equals(selectName))
-                {
-                    return musicList;
-                }
-            }
-            return null;
-        }
-      
     }
 }
 
