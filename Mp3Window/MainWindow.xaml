@@ -45,8 +45,6 @@
                             </GridViewColumn>
                         </GridView>
                     </ListView.View>
-
-
                 </ListView>
                 <!--<Label FontFamily="Microsoft YaHei" FontSize="15" >我喜欢的音乐</Label>
                 <Label FontFamily="Microsoft YaHei" FontSize="15" >英语歌曲</Label>

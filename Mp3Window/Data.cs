@@ -12,21 +12,7 @@ namespace Mp3Window
 {
     public class Data
     {
-        public MusicList MusicList
-        {
-            get => default(MusicList);
-            set
-            {
-            }
-        }
-
-        public ListName ListName
-        {
-            get => default(ListName);
-            set
-            {
-            }
-        }
+     
 
         //一些异常处理待做
         public static void Save(ref string text,string path)

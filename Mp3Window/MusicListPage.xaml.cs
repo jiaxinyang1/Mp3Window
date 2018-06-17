@@ -170,6 +170,9 @@ namespace Mp3Window
         private void ContextMenu_Clicked(object sender, RoutedEventArgs e)
         {
             //需要弹出一窗口来选择需要添加的歌单
+            Window choseWindow =new ChooseListWindow();
+            (choseWindow as ChooseListWindow)._listNames = ParentWindow.MusicListName;
+            choseWindow.Show();
         }
     }
 }

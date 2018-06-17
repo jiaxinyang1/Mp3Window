@@ -73,7 +73,7 @@
                             <ListView x:Name="MusicListView"    ItemsSource="{Binding}" BorderThickness="0" SelectionChanged="MusicListView_SelectionChanged" >
                                 <ListView.ContextMenu>
                                     <ContextMenu>
-                                        <MenuItem Name="MenuItem1" Header="添加到歌单" />
+                                        <MenuItem Name="MenuItem1" Header="添加到歌单" Click="ContextMenu_Clicked"/>
                                     </ContextMenu>
                                 </ListView.ContextMenu>
                                 <ListView.View >

@@ -79,7 +79,7 @@ namespace Mp3Window
         private Button MaxButton;
 
 
-        private List<ListName> MusicListName;
+        public List<ListName> MusicListName;
 
         private MusicPlay Play;
         private MusicListPage sonPage;//指向子窗口

@@ -19,9 +19,27 @@ namespace Mp3Window
     /// </summary>
     public partial class ChooseListWindow : Window
     {
+        //列表显示的类容
+        public List<ListName> _listNames { get; set; }
         public ChooseListWindow()
         {
             InitializeComponent();
+            this.Loaded += Load;
         }
+        /// <summary>
+        /// 初始化工作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void Load(object sender, RoutedEventArgs e)
+        {
+            foreach (var name in _listNames)
+            {
+                MusicListListView.Items.Add(name);
+            }
+            
+        }
+        
+
     }
 }
