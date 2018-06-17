@@ -121,10 +121,10 @@
             </StackPanel>
             <StackPanel >
                 <DockPanel LastChildFill="False" >
-                    <Label >歌曲名称</Label>
-                    <Label  DockPanel.Dock="Right">播放进度</Label>
+                    <Label  x:Name="SongName">歌曲名称</Label>
+                    <Label  DockPanel.Dock="Right" x:Name="SongTime">播放进度</Label>
                 </DockPanel>
-                <Slider Style="{StaticResource Slider_CustomStyle}"></Slider>
+                <Slider x:Name="PlayerSlider" Style="{StaticResource Slider_CustomStyle}"></Slider>
             </StackPanel>
         </DockPanel>
     </Grid>

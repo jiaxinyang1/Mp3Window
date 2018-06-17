@@ -82,6 +82,7 @@ namespace Mp3Window
         private List<ListName> MusicListName;
 
         private MusicPlay Play;
+        private MusicListPage sonPage;//指向子窗口
         public MainWindow()
         {
             this.Loaded += MainWindow_Loaded;
@@ -243,10 +244,12 @@ namespace Mp3Window
         private void MusicListListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            string text = (MusicListListView.SelectedItem as ListName)?.Name;
-
+            
+              string text = (MusicListListView.SelectedItem as ListName)?.Name;
               var musicListPage = new MusicListPage();
-               musicListPage.selectName = text;
+              musicListPage.ParentWindow = this;
+              musicListPage.selectName = text;
+              sonPage = musicListPage.ReturnPage();
               musicListPage.Init();
 
            
@@ -259,11 +262,11 @@ namespace Mp3Window
         /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Play= new MusicPlay();
-            Play.Play();
+            //Play= new MusicPlay();
+            //Play.Play((sonPage as MusicListPage)?.SelcetMusic.Url);
+              sonPage.PlaySong();
+            PlayerSlider.Value = 10;
         }
     }
-
-
 
 }

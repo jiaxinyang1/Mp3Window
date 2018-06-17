@@ -25,8 +25,16 @@ namespace Mp3Window
         public  string Singer { get; set; }//歌手
         public  string Time { get; set; }//歌曲时长
         public string Url { get; set; }// 歌曲路径
+
+        public MusicList MusicList
+        {
+            get => default(MusicList);
+            set
+            {
+            }
+        }
         //else...
-        
+
     }
     public class MusicList
     {
@@ -45,6 +53,14 @@ namespace Mp3Window
         public string CoverUrl { get; set; }//封面路径
 
         public List<Music> Songs { get; set; }//歌曲
+
+        public MusicListPage MusicListPage
+        {
+            get => default(MusicListPage);
+            set
+            {
+            }
+        }
 
 
 

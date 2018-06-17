@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Mp3Window.LibVlcAPI">
+    <Position X="9.5" Y="7.25" Width="3" />
+    <NestedTypes>
+      <Struct Name="Mp3Window.LibVlcAPI.PointerToArrayOfPointerHelper" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>MusicPlay.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>gDAAIAAkQAIAAAICAAAEBAhgAAAAAAAAAFAAAAAIAiA=</HashCode>
+      <FileName>MusicPlay.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MusicPlay" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Mp3Window.VlcPlayer">
+    <Position X="16" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>IAAgAAIAAAICggAAAAAAAACAAAAESAChoAAAAAAAAAA=</HashCode>
+      <FileName>MusicPlay.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MusicPlay" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Mp3Window.MusicPlay">
+    <Position X="13.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAgAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>MusicPlay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mp3Window.MusicList">
+    <Position X="9.25" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ABCIAAAAAAAgAAAAgAIEAAQIAEICAAAAAAgAQAAAAQA=</HashCode>
+      <FileName>MusicList.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MusicListPage" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Mp3Window.Music">
+    <Position X="12.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAACAAAgAAAAQA=</HashCode>
+      <FileName>MusicList.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MusicList" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Mp3Window.ListName">
+    <Position X="1.75" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mp3Window.MusicListPage">
+    <Position X="5.75" Y="6.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAQBAAAAIgAAYAgUQAAIAAAAAAACAAAACQA=</HashCode>
+      <FileName>MusicListPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Mp3Window.Data">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAgAAAAAQAAAAAIAAAAAAA=</HashCode>
+      <FileName>Data.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MusicList" />
+      <Property Name="ListName" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Mp3Window.Search" Collapsed="true">
+    <Position X="6.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAARAAAAAAAAAAAAA=</HashCode>
+      <FileName>Search.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Data" />
+      <Property Name="MusicList" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

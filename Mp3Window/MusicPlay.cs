@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security;
@@ -12,11 +13,16 @@ namespace Mp3Window
     class MusicPlay
     {
         private static VlcPlayer testpPlayer;
-        public void Play()
+        public void Play(string url)
         {
-            string plugins = System.Environment.CurrentDirectory + "\\plugins\\";
+            string plugins = Environment.CurrentDirectory + "\\plugins\\";
             testpPlayer = new VlcPlayer(plugins);
-            testpPlayer.PlayFile("DAOKO - 打上花火.mp3");
+            testpPlayer.PlayFile(url);
+        }
+
+        public string GetPlayTime()
+        {
+            return testpPlayer.GetPlayTime().ToString(CultureInfo.InvariantCulture);
         }
     }
     /// <summary>
@@ -35,6 +41,15 @@ namespace Mp3Window
 
             libvlc_media_player_ = LibVlcAPI.libvlc_media_player_new(libvlc_instance_);
         }
+
+        internal MusicPlay MusicPlay
+        {
+            get => default(MusicPlay);
+            set
+            {
+            }
+        }
+
         public void SetRenderWindow(int wndHandle)
         {
             if (libvlc_instance_ != IntPtr.Zero && wndHandle != 0)
@@ -114,6 +129,14 @@ namespace Mp3Window
     }
     internal static class LibVlcAPI
     {
+        internal static MusicPlay MusicPlay
+        {
+            get => default(MusicPlay);
+            set
+            {
+            }
+        }
+
         internal struct PointerToArrayOfPointerHelper
         {
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 11)]

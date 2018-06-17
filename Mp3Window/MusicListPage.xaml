@@ -70,7 +70,12 @@
                     <StackPanel Grid.Row="0" Height="3" Background="LightBlue"/>
                     <StackPanel  Grid.Row="1" Margin="0,10" x:Name="ListPanel" >
                         <DockPanel  Background="#E3E3E3"  x:Name="list">
-                            <ListView x:Name="MusicListView"    ItemsSource="{Binding}" BorderThickness="0" >
+                            <ListView x:Name="MusicListView"    ItemsSource="{Binding}" BorderThickness="0" SelectionChanged="MusicListView_SelectionChanged" >
+                                <ListView.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Name="MenuItem1" Header="添加到歌单" />
+                                    </ContextMenu>
+                                </ListView.ContextMenu>
                                 <ListView.View >
                                     <GridView  >
                                         <GridViewColumn Header="" Width="300" >
