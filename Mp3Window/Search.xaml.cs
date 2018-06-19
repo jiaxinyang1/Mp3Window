@@ -20,25 +20,26 @@ namespace Mp3Window
     /// </summary>
     public partial class Search : Page
     {
+        public List<Music> SongsList=new List<Music>();
         public Search()
         {
             InitializeComponent();
+       
+        }
+        /// <summary>
+        /// 搜索按钮按下
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
-        public Data Data
+        public void InitList()
         {
-            get => default(Data);
-            set
-            {
-            }
-        }
 
-        public MusicList MusicList
-        {
-            get => default(MusicList);
-            set
-            {
-            }
+        
         }
     }
 }

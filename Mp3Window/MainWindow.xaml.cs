@@ -80,9 +80,7 @@ namespace Mp3Window
 
 
         public List<ListName> MusicListName;
-
-        private MusicPlay Play;
-        private MusicListPage sonPage;//指向子窗口
+        private MusicListPage _musicListPage;//指向子窗口
         public MainWindow()
         {
             this.Loaded += MainWindow_Loaded;
@@ -229,6 +227,11 @@ namespace Mp3Window
            
         }
 
+        /// <summary>
+        /// 显示搜索页面
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Label_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Search search =new Search();
@@ -244,16 +247,12 @@ namespace Mp3Window
         private void MusicListListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            
-              string text = (MusicListListView.SelectedItem as ListName)?.Name;
-              var musicListPage = new MusicListPage();
-              musicListPage.ParentWindow = this;
-              musicListPage.selectName = text;
-              sonPage = musicListPage.ReturnPage();
-              musicListPage.Init();
+               _musicListPage = new MusicListPage();
+               _musicListPage.ParentWindow = this;
+               _musicListPage.Init();
 
            
-             ContentControl.Content = new Frame() { Content = musicListPage }; 
+             ContentControl.Content = new Frame() { Content = _musicListPage }; 
         }
         /// <summary>
         /// 播放按钮被按下
@@ -262,9 +261,8 @@ namespace Mp3Window
         /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //Play= new MusicPlay();
-            //Play.Play((sonPage as MusicListPage)?.SelcetMusic.Url);
-              sonPage.PlaySong();
+  
+            _musicListPage.PlaySong();
             PlayerSlider.Value = 10;
         }
     }

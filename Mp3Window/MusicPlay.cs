@@ -13,11 +13,17 @@ namespace Mp3Window
     class MusicPlay
     {
         private static VlcPlayer testpPlayer;
-        public void Play(string url)
+        private string _songName;
+        public void Play(string  name,string url)
         {
             string plugins = Environment.CurrentDirectory + "\\plugins\\";
             testpPlayer = new VlcPlayer(plugins);
-            testpPlayer.PlayFile(url);
+            if (_songName!=name)
+            {
+                _songName = name;
+                testpPlayer.PlayFile(url);
+            }
+      
         }
 
         public string GetPlayTime()

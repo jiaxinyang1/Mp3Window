@@ -12,8 +12,8 @@
         <StackPanel>
             <Border BorderBrush="LightGray" BorderThickness="2" Margin="15">
             <DockPanel LastChildFill="True" >
-                <Button Content="搜索" Width="30" Height="30" DockPanel.Dock="Right" Background="Transparent" ></Button>
-                    <TextBlock TextWrapping="Wrap" Text="TextBlock"  />
+                <Button Content="搜索" Width="30" Height="30" DockPanel.Dock="Right" Background="Transparent" Click="Button_Click" ></Button>
+                    <TextBox></TextBox>
                 </DockPanel>
             </Border>
             <ListView x:Name="listViewSearch"    ItemsSource="{Binding}" BorderThickness="0" >

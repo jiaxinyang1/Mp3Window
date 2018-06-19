@@ -21,11 +21,15 @@ namespace Mp3Window
     {
         //列表显示的类容
         public List<ListName> _listNames { get; set; }
+        //将要被添加的歌曲
+        public Music song;
         public ChooseListWindow()
         {
             InitializeComponent();
             this.Loaded += Load;
         }
+
+
         /// <summary>
         /// 初始化工作
         /// </summary>
@@ -37,9 +41,21 @@ namespace Mp3Window
             {
                 MusicListListView.Items.Add(name);
             }
-            
         }
-        
+        /// <summary>
+        /// 选择歌单后
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MusicListListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var list = Data.FindElectMusicList( (MusicListListView.SelectedItem as ListName)?.Name);
 
+            list.Songs.Add(song);
+            Data.SaveData();
+            this.Close();
+        }
+
+     
     }
 }

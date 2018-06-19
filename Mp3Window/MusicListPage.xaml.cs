@@ -24,37 +24,36 @@ namespace Mp3Window
     /// </summary>
     public partial class MusicListPage : Page
     {
-        
-        //所有歌单信息
-          List<MusicList>  MusicLists =new List<MusicList>();
-     
+
         //指定父窗口的指针
         public MainWindow ParentWindow { set; get; }
-
-        public string selectName { set; get; }
-
+        //在所有歌单信息中找到需要被显示的那一个歌单
         public MusicList selectList { get; set; }
         //被选中的歌曲
         public Music SelcetMusic { get; set; }
-
-        //正在播放的歌曲
+        
+        //正在播放的歌曲名称
         public String PlayingSong;
 
+        //播放类
+        private MusicPlay Play;
         public MusicListPage()
         {
             InitializeComponent();
             PlayingSong = "1";
+            Play =new MusicPlay();
         }
         /// <summary>
         /// 初始化相关
         /// </summary>
         public void Init()
         {
-   
-            ReadData();
-            
+         
+            Data.ReadData();
+            //得到需要显示的页面名字
+            Data.selectName=(ParentWindow.MusicListListView.SelectedItem as ListName)?.Name;
             //查找到被选中的歌单
-             selectList = FindElectMusicList();
+            selectList = Data.FindElectMusicList();
             //设置页面信息
   
             selectList.SetName(ListName);
@@ -66,45 +65,29 @@ namespace Mp3Window
             selectList.SetBrief(Brief);
 
             //不能工作，待解决
-          /*  selectList.SetCoverUrl(CoverImage);
-            selectList.SetCoverUrl(BackImage);
-            selectList.SetCoverUrl(CreatorImage);*/
-
-          selectList.AddMusic(MusicListView); 
-
-
-
+            /*  selectList.SetCoverUrl(CoverImage);
+              selectList.SetCoverUrl(BackImage);
+              selectList.SetCoverUrl(CreatorImage);*/
+           
+            selectList.AddMusic(MusicListView); 
         }
         /// <summary>
         /// 播放
         /// </summary>
         public void PlaySong()
         {
-            var  Play = new MusicPlay();
-            if (SelcetMusic.SongName!= PlayingSong)
-            {
-                PlayingSong= SelcetMusic.SongName;
-                Play.Play(SelcetMusic.Url);
-            }
+            Play.Play(PlayingSong,SelcetMusic.Url);
         }
-          
-        /// <summary>
-        /// 返回给父窗口自己
-        /// </summary>
-        /// <returns></returns>
-        public MusicListPage ReturnPage()
-        {
-            return this;
-
-        }
+        
+     
         /// <summary>
         /// 歌单中添加歌曲
         /// </summary>
         /// <param name="item"></param>
         public void AddSong(Music item)
         {
-           selectList.Songs.Add(item);
-            SaveData();//保存一下数据
+            selectList.Songs.Add(item);
+            Data.SaveData();//保存一下数据
         }
         /// <summary>
         /// 添加歌单信息
@@ -112,43 +95,11 @@ namespace Mp3Window
         /// <param name="item"></param>
         public void AddMusicList(MusicList  item)
         {
-            MusicLists.Add(item);
-            SaveData();//保存一下数据
+            Data.MusicLists.Add(item);
+            Data.SaveData();//保存一下数据
         }
     
-        /// <summary>
-        ///  按名称找到被选中的歌单
-        /// </summary>
-        /// <returns></returns>
-        public MusicList FindElectMusicList()
-        {
-        foreach (var musicList in MusicLists )
-            {
-                if (musicList.Name.Equals(selectName))
-                {
-                    return musicList;
-                }
-            }
-            return null;
-        }
-
-        /// <summary>
-        /// 保存到json文件
-        /// </summary>
-        public void SaveData()
-        {
-            string text = JSONConverter.ConvertToJSONString(MusicLists);
-            Data.Save(ref text, @"data\MusicListView.json");
-        }
-        /// <summary>
-        /// 从json中读入数据
-        /// </summary>
-        public void ReadData()
-        {
-            string text = "";
-            Data.Read(ref text, @"data\MusicListView.json");
-            MusicLists = JSONParser.Parse<List<MusicList>>(text);
-        }
+    
         /// <summary>
         /// 选择项改变时候更改一些信息
         /// </summary>
@@ -156,11 +107,11 @@ namespace Mp3Window
         /// <param name="e"></param>
         private void MusicListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            
             SelcetMusic = (MusicListView.SelectedItem as Music);
-
             ParentWindow.SongName.Content = (MusicListView.SelectedItem as Music)?.SongName;
             ParentWindow.SongTime.Content = (MusicListView.SelectedItem as Music)?.Time;
+
         }
         /// <summary>
         /// 右键菜单添加歌曲到歌单
@@ -172,7 +123,10 @@ namespace Mp3Window
             //需要弹出一窗口来选择需要添加的歌单
             Window choseWindow =new ChooseListWindow();
             (choseWindow as ChooseListWindow)._listNames = ParentWindow.MusicListName;
+            (choseWindow as ChooseListWindow).song=MusicListView.SelectedItem as Music;
             choseWindow.Show();
+
+
         }
     }
 }

@@ -7,24 +7,27 @@
         mc:Ignorable="d"
         Title="ChooseListWindow" Height="450" Width="800" WindowStyle="None">
     <Grid>
-        <ListView x:Name="MusicListListView"  ItemsSource="{Binding}" BorderThickness="0" Background="Transparent"   >
-            <ListView.View >
-                <GridView  >
-                    <GridViewColumn Header=""  >
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <DockPanel>
-                                    <TextBlock Foreground="Black" HorizontalAlignment="Center" Padding="10,0" Margin="10,0">
-                                        <TextBlock.Text>
-                                            <Binding Path="Name"/>
-                                        </TextBlock.Text>
-                                    </TextBlock>
-                                </DockPanel>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <StackPanel>
+            <ListView x:Name="MusicListListView"  ItemsSource="{Binding}" BorderThickness="0" Background="Transparent" SelectionChanged="MusicListListView_SelectionChanged"   >
+                <ListView.View >
+                    <GridView  >
+                        <GridViewColumn Header=""  >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DockPanel>
+                                        <TextBlock Foreground="Black" HorizontalAlignment="Center" Padding="10,0" Margin="10,0">
+                                            <TextBlock.Text>
+                                                <Binding Path="Name"/>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+       
     </Grid>
 </Window>
