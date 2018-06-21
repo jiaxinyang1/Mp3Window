@@ -75,8 +75,8 @@
     <Reference Include="Lsj.Util.HtmlBuilder, Version=2.0.1.0, Culture=neutral, PublicKeyToken=0f183bc795c57a20, processorArchitecture=MSIL">
       <HintPath>..\packages\Lsj.Util.HtmlBuilder.2.0.1\lib\net45\Lsj.Util.HtmlBuilder.dll</HintPath>
     </Reference>
-    <Reference Include="Lsj.Util.JSON, Version=2.0.2.0, Culture=neutral, PublicKeyToken=0f183bc795c57a20, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lsj.Util.JSON.2.0.2\lib\net45\Lsj.Util.JSON.dll</HintPath>
+    <Reference Include="Lsj.Util.JSON, Version=2.0.3.0, Culture=neutral, PublicKeyToken=0f183bc795c57a20, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lsj.Util.JSON.2.0.3\lib\net45\Lsj.Util.JSON.dll</HintPath>
     </Reference>
     <Reference Include="Lsj.Util.Net, Version=2.0.1.0, Culture=neutral, PublicKeyToken=0f183bc795c57a20, processorArchitecture=MSIL">
       <HintPath>..\packages\Lsj.Util.Net.2.0.1\lib\net45\Lsj.Util.Net.dll</HintPath>
@@ -111,6 +111,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddMusicList.xaml.cs">
+      <DependentUpon>AddMusicList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ChooseListWindow.xaml.cs">
       <DependentUpon>ChooseListWindow.xaml</DependentUpon>
     </Compile>
@@ -118,13 +121,16 @@
     <Compile Include="MusicListPage.xaml.cs">
       <DependentUpon>MusicListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MusicPlay.cs" />
     <Compile Include="NetEase.cs" />
     <Compile Include="Resources\Style\ListViewItemStyleSelector.cs" />
     <Compile Include="Search.xaml.cs">
       <DependentUpon>Search.xaml</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Page Include="AddMusicList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ChooseListWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -177,6 +183,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
     <None Include="data\LeftList.json" />
     <None Include="data\MusicListView.json" />

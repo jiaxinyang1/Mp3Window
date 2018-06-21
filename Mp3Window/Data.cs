@@ -28,13 +28,21 @@ namespace Mp3Window
     }
     public class Data
     {
-      
+
+        //被选中的歌曲
+        public static Music SelcetMusic { get; set; }
+
+        //正在播放的歌曲名称
+        public static String PlayingSong;
+
+
+
         //存放歌单名字的列表
-        public  static List<ListName> MusicListName;
+        public static List<ListName> MusicListName;
         //所有歌单信息
         public static List<MusicList> MusicLists = new List<MusicList>();
         //要显示的是哪一个歌单
-          public   static string selectName { set; get; }
+        public   static string selectName { set; get; }
 
 
         /// <summary>

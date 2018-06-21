@@ -17,6 +17,11 @@
                 </DockPanel>
             </Border>
             <ListView x:Name="listViewSearch"    ItemsSource="{Binding}" BorderThickness="0" SelectionChanged="listViewSearch_SelectionChanged" >
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Name="MenuItem1" Header="添加到歌单" Click="ContextMenu_Clicked" />
+                    </ContextMenu>
+                </ListView.ContextMenu>
                 <ListView.View >
                     <GridView  >
                         <GridViewColumn Header="" Width="300" >

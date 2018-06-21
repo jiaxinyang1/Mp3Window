@@ -65,6 +65,7 @@ namespace Mp3Window
   
         private MusicListPage _musicListPage;//指向子窗口
 
+        System.Windows.Media.MediaPlayer media = new MediaPlayer();//播放类
         public MainWindow()
         {
             this.Loaded += MainWindow_Loaded;
@@ -82,9 +83,13 @@ namespace Mp3Window
                 MinButton.Click += MinButton_Click;
                 MaxButton.Click += MaxButton_Click;
                 WindowTitleTbl = MainWindowTemplate.FindName("WindowTitleTbl", this) as TextBlock;
-            }    
-              //初始化左边的歌单名称列表
-              InitLeftMusicListView();
+            }
+          
+            //加载数据
+            Data.ReadData();
+            Data.ReadName();
+            //初始化左边的歌单名称列表
+            InitLeftMusicListView();
         }
         /// <summary>
         /// 初始化左边导航栏ListView
@@ -93,13 +98,7 @@ namespace Mp3Window
         public  void InitLeftMusicListView()
         {
 
-              //Data.ReadName();
-              Data.MusicListName=new List<ListName>();
-            
-          /*  MusicListName = new List<Data.ListName>();
-            MusicListName.Add(new Data.ListName("徐梦圆 热门50单曲"));
-            MusicListName.Add(new Data.ListName("网易云日推"));
-            MusicListName.Add(new Data.ListName("【东方纯音乐】春至之日，萬花盛放"));*/
+ 
             foreach (var musicname in  Data.MusicListName)
             {
                 MusicListListView.Items.Add(musicname);
@@ -217,8 +216,10 @@ namespace Mp3Window
         /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            _musicListPage.PlaySong();
-            PlayerSlider.Value = 10;
+
+           media.Open( new Uri(Data.SelcetMusic.Url));
+            media.Play();
+            
         }
         /// <summary>
         /// 添加导航栏歌单名字

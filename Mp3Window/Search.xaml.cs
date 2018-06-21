@@ -23,7 +23,7 @@ namespace Mp3Window
     public partial class Search : Page
     {
         public List<Music> SongsList=new List<Music>();
-        System.Windows.Media.MediaPlayer media = new MediaPlayer();
+    
         private NetEase net=new NetEase();
         public Search()
         {
@@ -51,10 +51,14 @@ namespace Mp3Window
                 }
 
               dynamic songDetail  =net.GetMusicDetail(id);
-                foreach (var detail in songDetail.data)
+                if (songDetail!=null)
                 {
-                    url = detail.url;
+                    foreach (var detail in songDetail.data)
+                    {
+                        url = detail.url;
+                    }
                 }
+            
               SongsList.Add(new Music(songName,songArtist,"null",url));
             }
             
@@ -75,8 +79,18 @@ namespace Mp3Window
  
         private void listViewSearch_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            media.Open(new Uri((listViewSearch.SelectedItem as Music).Url));
-            media.Play();
+      /*      media.Open(new Uri((listViewSearch.SelectedItem as Music).Url));
+            media.Play();*/
+        }
+
+        private void ContextMenu_Clicked(object sender, RoutedEventArgs e)
+        {
+            //需要弹出一窗口来选择需要添加的歌单
+            Window choseWindow = new ChooseListWindow();
+            (choseWindow as ChooseListWindow)._listNames = Data.MusicListName;
+            (choseWindow as ChooseListWindow).song = listViewSearch.SelectedItem as Music;
+            choseWindow.Show();
+
 
         }
     }
