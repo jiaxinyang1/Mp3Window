@@ -57,7 +57,7 @@
                                 <Label Margin="10,0,0,0" x:Name="Creator">创作者</Label>
                                 <Label Margin="10,0,0,0" Foreground="DarkGray" x:Name="CreatTime">创建时间</Label>
                             </StackPanel >
-                            <Label Margin="0,10,0,0" x:Name="Tag">标签:</Label>
+                            <Label Margin="0,10,0,0" x:Name="Mark">标签:</Label>
                             <Label Margin="0,10,0,0" x:Name="Brief">简介:</Label>
                         </StackPanel>
                     </StackPanel>

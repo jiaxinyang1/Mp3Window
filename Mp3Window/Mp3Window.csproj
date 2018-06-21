@@ -69,17 +69,30 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Lsj.Util, Version=1.2.4.0, Culture=neutral, PublicKeyToken=0f183bc795c57a20, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lsj.Util.1.2.4\lib\net40\Lsj.Util.dll</HintPath>
+    <Reference Include="Lsj.Util, Version=2.0.1.0, Culture=neutral, PublicKeyToken=0f183bc795c57a20, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lsj.Util.2.0.1\lib\net45\Lsj.Util.dll</HintPath>
     </Reference>
-    <Reference Include="Lsj.Util.JSON, Version=1.2.8.0, Culture=neutral, PublicKeyToken=0f183bc795c57a20, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lsj.Util.JSON.1.2.8\lib\net40\Lsj.Util.JSON.dll</HintPath>
+    <Reference Include="Lsj.Util.HtmlBuilder, Version=2.0.1.0, Culture=neutral, PublicKeyToken=0f183bc795c57a20, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lsj.Util.HtmlBuilder.2.0.1\lib\net45\Lsj.Util.HtmlBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="Lsj.Util.JSON, Version=2.0.2.0, Culture=neutral, PublicKeyToken=0f183bc795c57a20, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lsj.Util.JSON.2.0.2\lib\net45\Lsj.Util.JSON.dll</HintPath>
+    </Reference>
+    <Reference Include="Lsj.Util.Net, Version=2.0.1.0, Culture=neutral, PublicKeyToken=0f183bc795c57a20, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lsj.Util.Net.2.0.1\lib\net45\Lsj.Util.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Lsj.Util.Net.Web, Version=2.0.1.0, Culture=neutral, PublicKeyToken=0f183bc795c57a20, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lsj.Util.Net.Web.2.0.1\lib\net45\Lsj.Util.Net.Web.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
-    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\net461\System.ValueTuple.dll</HintPath>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -106,6 +119,7 @@
       <DependentUpon>MusicListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MusicPlay.cs" />
+    <Compile Include="NetEase.cs" />
     <Compile Include="Resources\Style\ListViewItemStyleSelector.cs" />
     <Compile Include="Search.xaml.cs">
       <DependentUpon>Search.xaml</DependentUpon>
@@ -165,6 +179,7 @@
     </EmbeddedResource>
     <None Include="ClassDiagram2.cd" />
     <None Include="data\LeftList.json" />
+    <None Include="data\MusicListView.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -212,6 +227,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="image\voice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

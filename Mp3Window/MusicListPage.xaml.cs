@@ -61,7 +61,7 @@ namespace Mp3Window
             selectList.SetAuthor(Creator);
             selectList.SetTime(CreatTime);
 
-            selectList.SetTag(Tag);
+            selectList.SetTag(Mark);
             selectList.SetBrief(Brief);
 
             //不能工作，待解决
@@ -78,8 +78,6 @@ namespace Mp3Window
         {
             Play.Play(PlayingSong,SelcetMusic.Url);
         }
-        
-     
         /// <summary>
         /// 歌单中添加歌曲
         /// </summary>
@@ -122,7 +120,7 @@ namespace Mp3Window
         {
             //需要弹出一窗口来选择需要添加的歌单
             Window choseWindow =new ChooseListWindow();
-            (choseWindow as ChooseListWindow)._listNames = ParentWindow.MusicListName;
+            (choseWindow as ChooseListWindow)._listNames = Data.MusicListName ;
             (choseWindow as ChooseListWindow).song=MusicListView.SelectedItem as Music;
             choseWindow.Show();
 

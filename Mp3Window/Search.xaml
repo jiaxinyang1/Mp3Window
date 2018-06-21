@@ -13,10 +13,10 @@
             <Border BorderBrush="LightGray" BorderThickness="2" Margin="15">
             <DockPanel LastChildFill="True" >
                 <Button Content="搜索" Width="30" Height="30" DockPanel.Dock="Right" Background="Transparent" Click="Button_Click" ></Button>
-                    <TextBox></TextBox>
+                    <TextBox x:Name="searchText"></TextBox>
                 </DockPanel>
             </Border>
-            <ListView x:Name="listViewSearch"    ItemsSource="{Binding}" BorderThickness="0" >
+            <ListView x:Name="listViewSearch"    ItemsSource="{Binding}" BorderThickness="0" SelectionChanged="listViewSearch_SelectionChanged" >
                 <ListView.View >
                     <GridView  >
                         <GridViewColumn Header="" Width="300" >

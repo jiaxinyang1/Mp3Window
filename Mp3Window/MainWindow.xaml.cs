@@ -14,22 +14,7 @@ using Lsj.Util.JSON;
 
 namespace Mp3Window
 {
-    //歌单名字
-    public class ListName
-    {
-        public string Name { get; set; }
-
-        public ListName()
-        {
-
-        }
-        public ListName(string name)
-        {
-            Name = name;
-        }
-
-        
-    }
+  
     public class PopopHelper
     {
         //实现了浮动层跟随移动
@@ -77,25 +62,17 @@ namespace Mp3Window
         private Button MinButton;
         private TextBlock WindowTitleTbl;
         private Button MaxButton;
-
-
-        public List<ListName> MusicListName;
+  
         private MusicListPage _musicListPage;//指向子窗口
+
         public MainWindow()
         {
             this.Loaded += MainWindow_Loaded;
-            
-
         }
-
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-      
-           
-            
+        {   
             ControlTemplate MainWindowTemplate
                 = Application.Current.Resources["MainWindowTemplate"] as ControlTemplate;
-
             if (MainWindowTemplate!=null)
             {
                 CloseButton = MainWindowTemplate.FindName("CloseWinButton", this) as Button;
@@ -105,21 +82,9 @@ namespace Mp3Window
                 MinButton.Click += MinButton_Click;
                 MaxButton.Click += MaxButton_Click;
                 WindowTitleTbl = MainWindowTemplate.FindName("WindowTitleTbl", this) as TextBlock;
-            }
-
-
+            }    
               //初始化左边的歌单名称列表
               InitLeftMusicListView();
-
-
-        }
-
-        public void AddMusicListName(string name)
-        {
-            ListName  buffer =new ListName(name);
-            MusicListName.Add(buffer);//添加到储存数据的list中
-            MusicListListView.Items.Add(buffer);//添加到ui上listview
-            SaveData();//保存一下数据
         }
         /// <summary>
         /// 初始化左边导航栏ListView
@@ -128,26 +93,19 @@ namespace Mp3Window
         public  void InitLeftMusicListView()
         {
 
-            string text = "";
-            Data.Read(ref text, @"data\LeftList.json");
-            MusicListName = JSONParser.Parse<List<ListName>>(text);
-            foreach (var musicname in MusicListName)
+              //Data.ReadName();
+              Data.MusicListName=new List<ListName>();
+            
+          /*  MusicListName = new List<Data.ListName>();
+            MusicListName.Add(new Data.ListName("徐梦圆 热门50单曲"));
+            MusicListName.Add(new Data.ListName("网易云日推"));
+            MusicListName.Add(new Data.ListName("【东方纯音乐】春至之日，萬花盛放"));*/
+            foreach (var musicname in  Data.MusicListName)
             {
                 MusicListListView.Items.Add(musicname);
             }
 
         }
-        /// <summary>
-        /// 信息存盘工作
-        /// 一些异常处理待做
-        /// </summary>
-        public void SaveData()
-        {
-            string text= JSONConverter.ConvertToJSONString(MusicListName);
-            Data.Save(ref text,@"data\LeftList.json");
-        }
-
-
         /// <summary>
         /// 最大化不覆盖任务栏
         private bool isMaxWindow = false;//定义窗口的状态
@@ -195,8 +153,6 @@ namespace Mp3Window
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-      
-
         private void MinButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
 
@@ -205,7 +161,6 @@ namespace Mp3Window
   
             this.WindowState = System.Windows.WindowState.Minimized;
         }
-
         /// <summary>
         /// 实现窗体移动
         /// </summary>
@@ -216,9 +171,11 @@ namespace Mp3Window
 
             base.OnMouseLeftButtonDown(e);
         }
-  
-
-        //显示浮动层
+        /// <summary>
+        /// 显示音量调节滑动条
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
 
@@ -226,7 +183,6 @@ namespace Mp3Window
             Popup1.IsOpen = true;
            
         }
-
         /// <summary>
         /// 显示搜索页面
         /// </summary>
@@ -261,9 +217,19 @@ namespace Mp3Window
         /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-  
             _musicListPage.PlaySong();
             PlayerSlider.Value = 10;
+        }
+        /// <summary>
+        /// 添加导航栏歌单名字
+        /// </summary>
+        /// <param name="name"></param>
+        public void AddMusicListName(string name)
+        {
+            ListName buffer = new ListName(name);
+            Data.MusicListName.Add(buffer);//添加到储存数据的list中
+            MusicListListView.Items.Add(buffer);//添加到ui上listview
+            Data.SaveName();//保存一下数据
         }
     }
 
