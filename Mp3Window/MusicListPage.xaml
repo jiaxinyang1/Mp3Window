@@ -9,6 +9,7 @@
       Title="MusicList">
 
     <Grid Background="White">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel  >
             <Grid>
                 <Grid.RowDefinitions>
@@ -69,20 +70,21 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Height="3" Background="LightBlue"/>
                     <StackPanel  Grid.Row="1" Margin="0,10" x:Name="ListPanel" >
-                        <DockPanel  Background="#E3E3E3"  x:Name="list">
+                        <DockPanel  Background="#E3E3E3"  >
                             <ListView x:Name="MusicListView"    ItemsSource="{Binding}" BorderThickness="0" SelectionChanged="MusicListView_SelectionChanged" >
                                 <ListView.ContextMenu>
                                     <ContextMenu>
                                         <MenuItem Name="MenuItem1" Header="添加到歌单" Click="ContextMenu_Clicked"/>
+                                        <MenuItem Name="MenuItem2" Header="删除歌曲" Click="ContextMenu2_Clicked"/>
                                     </ContextMenu>
                                 </ListView.ContextMenu>
                                 <ListView.View >
                                     <GridView  >
-                                        <GridViewColumn Header="" Width="300" >
+                                        <GridViewColumn Header="" Width="400" >
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
                                                     <DockPanel>
-                                                        <TextBlock Foreground="Black" HorizontalAlignment="Center" Padding="10,0">
+                                                        <TextBlock Foreground="Black" HorizontalAlignment="Left"  Padding="10,0" >
                                                             <TextBlock.Text>
                                                                 <Binding Path="SongName"/>
                                                             </TextBlock.Text>
@@ -92,7 +94,7 @@
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
                                         <GridViewColumn Header="" Width="200" DisplayMemberBinding="{Binding Path=Singer}"/>
-                                        <GridViewColumn Header="" Width="80" DisplayMemberBinding="{Binding Path=Time}"/>
+                                        <GridViewColumn Header="" Width="100" DisplayMemberBinding="{Binding Path=Time}"/>
                                     </GridView>
                                 </ListView.View>
                             </ListView>
@@ -101,5 +103,6 @@
                 </Grid>
             </Grid>
         </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

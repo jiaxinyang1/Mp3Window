@@ -5,9 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mp3Window"
         mc:Ignorable="d"
-        Title="ChooseListWindow" Height="450" Width="800" WindowStyle="None">
+        Title="ChooseListWindow" Height="400" Width="500" WindowStyle="None">
     <Grid>
-        <StackPanel>
+        <ScrollViewer  VerticalScrollBarVisibility="Auto">
+
+        
+        <StackPanel CanVerticallyScroll="True" >
             <ListView x:Name="MusicListListView"  ItemsSource="{Binding}" BorderThickness="0" Background="Transparent" SelectionChanged="MusicListListView_SelectionChanged"   >
                 <ListView.View >
                     <GridView  >
@@ -28,6 +31,6 @@
                 </ListView.View>
             </ListView>
         </StackPanel>
-       
+        </ScrollViewer>
     </Grid>
 </Window>

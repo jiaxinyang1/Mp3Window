@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,7 +30,7 @@ namespace Mp3Window
         //else...
 
     }
-    public class MusicList
+    public class MusicList:ICloneable
     {
       
 
@@ -45,14 +46,14 @@ namespace Mp3Window
 
         public string CoverUrl { get; set; }//封面路径
 
-        public List<Music> Songs { get; set; }//歌曲
+        public ObservableCollection<Music> Songs { get; set; }//歌曲
 
         /// <summary>
         /// 一些初始化工作
         /// </summary>
         public MusicList()
         {
-            Songs = new List<Music>();
+            Songs = new ObservableCollection<Music>();
         }
         //构造函数
         public MusicList(string author, string time, string tag, string brief, string name, string coverUrl) : this()
@@ -107,12 +108,12 @@ namespace Mp3Window
         /// <param name="listView"></param>
         public void AddMusic(ListView listView)
         {
-            
-            foreach (var song in Songs)
-            {
-                listView.Items.Add(song);
-            }
+            listView.ItemsSource = Songs;
         }
-     
+
+        public object Clone()
+        {
+           return  new MusicList(this.Author,this.Time,this.Tag,this.Brief,this.Name,this.CoverUrl);
+        }
     }
 }

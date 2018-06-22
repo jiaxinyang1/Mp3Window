@@ -17,6 +17,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel Width="200"  Grid.Column="0" Background="WhiteSmoke">
                 <DockPanel  Style="{StaticResource NavStyle}"  >
                     <Image Source="image/search.png" Height="20" Width="20" Margin="10,0,0,0"></Image>
@@ -24,19 +25,20 @@
                 </DockPanel>
                 <DockPanel Style="{StaticResource NavStyle}"  >
                     <Image Source="image/New.png" Height="20" Width="20" Margin="10,0,0,0"></Image>
-                    <Label  FontFamily="Microsoft YaHei" FontSize="15" Margin="10,0,0,0">创建歌单</Label>
+                    <Label  FontFamily="Microsoft YaHei" FontSize="15" Margin="10,0,0,0" MouseDown="Label_MouseDown_1">创建歌单</Label>
                 </DockPanel>
-                <Label FontSize="12" Foreground="#FFB6B6B6" xml:space="preserve">     我的歌单</Label>
-                <ListView x:Name="MusicListListView"  ItemsSource="{Binding}" BorderThickness="0" Background="Transparent"  SelectionChanged="MusicListListView_SelectionChanged" >
+                <Label FontSize="12" Foreground="#FFB6B6B6" xml:space="preserve" >     我的歌单</Label>
+                
+                <ListView x:Name="MusicListListView"  ItemsSource="{Binding}" BorderThickness="0" Background="Transparent"  SelectionChanged="MusicListListView_SelectionChanged"  >
                     <ListView.View >
                         <GridView  >
-                            <GridViewColumn Header=""  >
+                            <GridViewColumn Header=""   Width="180">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <DockPanel>
-                                            <TextBlock Foreground="Black" HorizontalAlignment="Center" Padding="10,0" Margin="10,0">
+                                            <TextBlock Foreground="Black" HorizontalAlignment="Left" Padding="10,0" Margin="10,0">
                                                 <TextBlock.Text>
-                                                    <Binding Path="Name"/>
+                                                    <Binding Path="Name" Mode="TwoWay"/>
                                                 </TextBlock.Text>
                                             </TextBlock>
                                         </DockPanel>
@@ -46,11 +48,8 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
-                <!--<Label FontFamily="Microsoft YaHei" FontSize="15" >我喜欢的音乐</Label>
-                <Label FontFamily="Microsoft YaHei" FontSize="15" >英语歌曲</Label>
-                <Label FontFamily="Microsoft YaHei" FontSize="15" >快节奏歌曲</Label>
-                <Label FontFamily="Microsoft YaHei" FontSize="15" >纯音乐</Label>-->
             </StackPanel>
+            </ScrollViewer>
             <ContentControl Grid.Column="1" x:Name="ContentControl" >
                 
                </ContentControl>
@@ -76,9 +75,9 @@
                         </Image>
                     </Button.Content>
                 </Button>
-                <Button Style="{StaticResource ButtonOverStyle}" Click="Button_Click" >
+                <Button Style="{StaticResource ButtonOverStyle}" Click="Button_Click"  >
                     <Button.Content>
-                        <Image Width="40"  Height="38" Stretch="Fill"  Margin="0,5,0,0">
+                        <Image Width="40"  Height="38" Stretch="Fill"  Margin="0,5,0,0" x:Name="Buttonplay">
                             <Image.Source>
                                 <BitmapImage UriSource="image/play.png"/>
                             </Image.Source>
@@ -120,7 +119,8 @@
             <StackPanel >
                 <DockPanel LastChildFill="False" >
                     <Label  x:Name="SongName">歌曲名称</Label>
-                    <Label  DockPanel.Dock="Right" x:Name="SongTime">播放进度</Label>
+                    <Label  DockPanel.Dock="Right" x:Name="SongTime">/ 00:00</Label>
+                    <Label DockPanel.Dock="Right" x:Name="SongTimeChanged" >00:00</Label>
                 </DockPanel>
                 <Slider x:Name="PlayerSlider" Style="{StaticResource Slider_CustomStyle}"></Slider>
             </StackPanel>

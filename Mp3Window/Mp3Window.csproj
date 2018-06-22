@@ -75,8 +75,8 @@
     <Reference Include="Lsj.Util.HtmlBuilder, Version=2.0.1.0, Culture=neutral, PublicKeyToken=0f183bc795c57a20, processorArchitecture=MSIL">
       <HintPath>..\packages\Lsj.Util.HtmlBuilder.2.0.1\lib\net45\Lsj.Util.HtmlBuilder.dll</HintPath>
     </Reference>
-    <Reference Include="Lsj.Util.JSON, Version=2.0.3.0, Culture=neutral, PublicKeyToken=0f183bc795c57a20, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lsj.Util.JSON.2.0.3\lib\net45\Lsj.Util.JSON.dll</HintPath>
+    <Reference Include="Lsj.Util.JSON, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0f183bc795c57a20, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lsj.Util.JSON.2.0.5\lib\net45\Lsj.Util.JSON.dll</HintPath>
     </Reference>
     <Reference Include="Lsj.Util.Net, Version=2.0.1.0, Culture=neutral, PublicKeyToken=0f183bc795c57a20, processorArchitecture=MSIL">
       <HintPath>..\packages\Lsj.Util.Net.2.0.1\lib\net45\Lsj.Util.Net.dll</HintPath>

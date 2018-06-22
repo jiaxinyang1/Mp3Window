@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace Mp3Window
     public partial class ChooseListWindow : Window
     {
         //列表显示的类容
-        public List<ListName> _listNames { get; set; }
+        public ObservableCollection<ListName> _listNames { get; set; }
         //将要被添加的歌曲
         public Music song;
         public ChooseListWindow()

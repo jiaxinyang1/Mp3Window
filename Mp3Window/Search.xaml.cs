@@ -22,9 +22,10 @@ namespace Mp3Window
     /// </summary>
     public partial class Search : Page
     {
-        public List<Music> SongsList=new List<Music>();
-    
-        private NetEase net=new NetEase();
+        public List<Music> SongsList;
+        
+      
+ 
         public Search()
         {
             InitializeComponent();
@@ -37,20 +38,23 @@ namespace Mp3Window
         /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-         dynamic songSearch =  net.Search(searchText.Text);          
+            SongsList = new List<Music>();
+            dynamic songSearch =  Data.net.Search(searchText.Text);
             foreach (var song in songSearch.result.songs)
             {
+                
                 int id=(int)song.id;
                 string songName = song.name;
                 string songArtist="";
                 string url="";
+                string album="null";
                 foreach (var artist in song.artists)
                 {
                     songArtist +=artist.name;
                     songArtist += "/";
                 }
 
-              dynamic songDetail  =net.GetMusicDetail(id);
+              dynamic songDetail  = Data.net.GetMusicDetail(id);
                 if (songDetail!=null)
                 {
                     foreach (var detail in songDetail.data)
@@ -58,29 +62,14 @@ namespace Mp3Window
                         url = detail.url;
                     }
                 }
-            
-              SongsList.Add(new Music(songName,songArtist,"null",url));
-            }
-            
-            InitList();
 
-     
-        }
-
-        public void InitList()
-        {
-            foreach (var song in SongsList)
-            {
-                listViewSearch.Items.Add(song);
+                album = song.album.name;
+                if(url!=null)
+                    SongsList.Add(new Music(songName,songArtist, album, id.ToString()));
             }
 
-        }
+            listViewSearch.ItemsSource = SongsList;
 
- 
-        private void listViewSearch_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-      /*      media.Open(new Uri((listViewSearch.SelectedItem as Music).Url));
-            media.Play();*/
         }
 
         private void ContextMenu_Clicked(object sender, RoutedEventArgs e)
@@ -90,8 +79,10 @@ namespace Mp3Window
             (choseWindow as ChooseListWindow)._listNames = Data.MusicListName;
             (choseWindow as ChooseListWindow).song = listViewSearch.SelectedItem as Music;
             choseWindow.Show();
-
-
         }
+
+  
+         
+   
     }
 }

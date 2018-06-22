@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using Lsj.Util.JSON;
+using NeteaseCloud;
 
 namespace Mp3Window
 {
@@ -66,6 +70,11 @@ namespace Mp3Window
         private MusicListPage _musicListPage;//指向子窗口
 
         System.Windows.Media.MediaPlayer media = new MediaPlayer();//播放类
+
+        private bool isPlaying=false;//是否正在播放
+        private BitmapImage playingImage = new BitmapImage(new Uri("image/play.png", UriKind.Relative));
+        private BitmapImage pauseBitmapImage= new BitmapImage(new Uri("image/pause.png", UriKind.Relative));
+
         public MainWindow()
         {
             this.Loaded += MainWindow_Loaded;
@@ -86,8 +95,12 @@ namespace Mp3Window
             }
           
             //加载数据
+            
             Data.ReadData();
+          
             Data.ReadName();
+
+            Data.net=new NetEase();
             //初始化左边的歌单名称列表
             InitLeftMusicListView();
         }
@@ -97,13 +110,7 @@ namespace Mp3Window
         /// </summary>
         public  void InitLeftMusicListView()
         {
-
- 
-            foreach (var musicname in  Data.MusicListName)
-            {
-                MusicListListView.Items.Add(musicname);
-            }
-
+            MusicListListView.ItemsSource = Data.MusicListName;
         }
         /// <summary>
         /// 最大化不覆盖任务栏
@@ -166,8 +173,14 @@ namespace Mp3Window
         /// <param name="e"></param>
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-            DragMove();
-
+            try
+            {
+                DragMove();
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
             base.OnMouseLeftButtonDown(e);
         }
         /// <summary>
@@ -189,9 +202,9 @@ namespace Mp3Window
         /// <param name="e"></param>
         private void Label_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            //清空列表框选择
+            MusicListListView.SelectedItem = null;
             Search search =new Search();
-  
-
             ContentControl.Content = new Frame() {Content = search};
         }
         /// <summary>
@@ -202,12 +215,14 @@ namespace Mp3Window
         private void MusicListListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-               _musicListPage = new MusicListPage();
-               _musicListPage.ParentWindow = this;
-               _musicListPage.Init();
-
+            if (MusicListListView.SelectedItem!=null)
+            {
+                _musicListPage = new MusicListPage();
+                _musicListPage.ParentWindow = this;
+                _musicListPage.Init();
+                ContentControl.Content = new Frame() { Content = _musicListPage };
+            }
            
-             ContentControl.Content = new Frame() { Content = _musicListPage }; 
         }
         /// <summary>
         /// 播放按钮被按下
@@ -217,20 +232,102 @@ namespace Mp3Window
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-           media.Open( new Uri(Data.SelcetMusic.Url));
-            media.Play();
+            if (!isPlaying)
+            {
+                isPlaying = true;
+                Buttonplay.Source = pauseBitmapImage;
+                media.Open(new Uri(GetUri()));
+                while (!media.NaturalDuration.HasTimeSpan)
+                {
+                    Thread.Sleep(10);
+                }
+                media.Play();
+
+                System.Windows.Threading.DispatcherTimer myTimer = new System.Windows.Threading.DispatcherTimer();
+                myTimer.Tick += new EventHandler(TimeChanged);
+                myTimer.Interval = new TimeSpan(0, 0, 0, 1);
+                myTimer.Start();
+            }
+            else
+            {
+                media.Pause();
+                isPlaying = false;
+                Buttonplay.Source = playingImage;
+            }
+      
+
+
+      
+
+        
+
             
+       
+        }
+
+        /// <summary>
+        /// 获取歌曲时间长度
+        /// </summary>
+        private void GetTime()
+        {
+
+            string strMinutes;
+            string strSeconds;
+            var minutes = media.NaturalDuration.TimeSpan.Minutes;
+            var seconds = media.NaturalDuration.TimeSpan.Seconds;
+            if (minutes < 10)
+                strMinutes = "0" + minutes;
+            else
+                strMinutes = minutes.ToString();
+            if (seconds < 10)
+                strSeconds = "0" + seconds;
+            else
+                strSeconds = seconds.ToString();
+            SongTime.Content = "/" + strMinutes + ":" + strSeconds;
         }
         /// <summary>
-        /// 添加导航栏歌单名字
+        /// 更新时间戳
         /// </summary>
-        /// <param name="name"></param>
-        public void AddMusicListName(string name)
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TimeChanged(object sender,EventArgs e )
         {
-            ListName buffer = new ListName(name);
-            Data.MusicListName.Add(buffer);//添加到储存数据的list中
-            MusicListListView.Items.Add(buffer);//添加到ui上listview
-            Data.SaveName();//保存一下数据
+
+            SongTimeChanged.Content = media.Position.ToString(@"mm\:ss");
+
+        }
+        /// <summary>
+        /// 网易会更新uri 得实时拿
+        /// </summary>
+        /// <param name="song"></param>
+        public  string GetUri()
+        {
+            string url="null";
+            int id =Int32.Parse(Data.SelcetMusic.Url) ;
+     
+            dynamic songDetail = Data.net.GetMusicDetail(id);
+            if (songDetail != null)
+            {
+                foreach (var detail in songDetail.data)
+                {
+                    url = detail.url;
+                }
+            }
+
+            return url;
+        }
+        /// <summary>
+        /// 创建歌单按钮被按下
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Label_MouseDown_1(object sender, MouseButtonEventArgs e)
+        {
+            Window addmuscilistWindow = new AddMusicListxaml();
+            addmuscilistWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            addmuscilistWindow.Owner = this;
+            addmuscilistWindow.ShowDialog();
+
         }
     }
 

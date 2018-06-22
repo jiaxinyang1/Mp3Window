@@ -30,7 +30,7 @@ namespace Mp3Window
         //在所有歌单信息中找到需要被显示的那一个歌单
         public MusicList selectList { get; set; }
 
-
+        MediaPlayer tiMediaPlayer = new MediaPlayer();
         public MusicListPage()
         {
             InitializeComponent();
@@ -91,11 +91,10 @@ namespace Mp3Window
         /// <param name="e"></param>
         private void MusicListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+       
             Data.SelcetMusic = (MusicListView.SelectedItem as Music);
             ParentWindow.SongName.Content = (MusicListView.SelectedItem as Music)?.SongName;
-            ParentWindow.SongTime.Content = (MusicListView.SelectedItem as Music)?.Time;
-
+        
         }
         /// <summary>
         /// 右键菜单添加歌曲到歌单
@@ -109,6 +108,16 @@ namespace Mp3Window
             (choseWindow as ChooseListWindow)._listNames = Data.MusicListName ;
             (choseWindow as ChooseListWindow).song=MusicListView.SelectedItem as Music;
             choseWindow.Show();
+        }
+        /// <summary>
+        /// 右键菜单删除歌曲
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ContextMenu2_Clicked(object sender, RoutedEventArgs e)
+        {
+            selectList.Songs.Remove(MusicListView.SelectedItem as Music);
+            Data.SaveData();
         }
     }
 }
