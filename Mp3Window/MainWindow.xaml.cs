@@ -244,6 +244,7 @@ namespace Mp3Window
                 {
                     Thread.Sleep(10);
                 }
+                GetTime();
                 media.Play();
 
                 System.Windows.Threading.DispatcherTimer myTimer = new System.Windows.Threading.DispatcherTimer();
