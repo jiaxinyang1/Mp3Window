@@ -101,8 +101,11 @@ namespace Mp3Window
             Data.ReadName();
 
             Data.net=new NetEase();
-            //初始化左边的歌单名称列表
             InitLeftMusicListView();
+            MusicListListView.SelectedItem = Data.MusicListName[0];
+            MusicListListView_SelectionChanged(this,null);
+            //初始化左边的歌单名称列表
+
         }
         /// <summary>
         /// 初始化左边导航栏ListView

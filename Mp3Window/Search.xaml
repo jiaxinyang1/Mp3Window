@@ -12,7 +12,7 @@
             <Border BorderBrush="LightGray" BorderThickness="2" Margin="15">
             <DockPanel LastChildFill="True" >
                 <Button Content="搜索" Width="50" Height="30" DockPanel.Dock="Right" Background="Transparent" Click="Button_Click" BorderBrush="Transparent" Foreground="#FFBDB2B2" ></Button>
-                    <TextBox x:Name="searchText" FontSize="20">aaaa</TextBox>
+                    <TextBox x:Name="searchText" FontSize="18" ></TextBox>
                 </DockPanel>
             </Border>
             <ListView x:Name="listViewSearch"    ItemsSource="{Binding}" BorderThickness="0"   >

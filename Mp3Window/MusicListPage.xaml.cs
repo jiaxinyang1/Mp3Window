@@ -105,6 +105,8 @@ namespace Mp3Window
         {
             //需要弹出一窗口来选择需要添加的歌单
             Window choseWindow =new ChooseListWindow();
+            choseWindow.Owner = ParentWindow;
+            choseWindow.WindowStartupLocation= WindowStartupLocation.CenterOwner;
             (choseWindow as ChooseListWindow)._listNames = Data.MusicListName ;
             (choseWindow as ChooseListWindow).song=MusicListView.SelectedItem as Music;
             choseWindow.Show();
