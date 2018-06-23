@@ -110,7 +110,7 @@
                        VerticalOffset="-160">
                     <Border BorderBrush="LightBlue" BorderThickness="3">
                         <StackPanel Orientation="Vertical">
-                            <Slider Orientation="Vertical" Height="100" Background="White"></Slider>
+                            <Slider Orientation="Vertical" Height="100" Background="White" x:Name="VolumeSlider" ValueChanged="VolumeSlider_ValueChanged"></Slider>
                         </StackPanel>
                     </Border>
                   
@@ -119,10 +119,11 @@
             <StackPanel >
                 <DockPanel LastChildFill="False" >
                     <Label  x:Name="SongName">歌曲名称</Label>
-                    <Label  DockPanel.Dock="Right" x:Name="SongTime">/ 00:00</Label>
+                    <Label  DockPanel.Dock="Right" x:Name="SongTime">00:00</Label>
+                    <Label  DockPanel.Dock="Right" >/ </Label>
                     <Label DockPanel.Dock="Right" x:Name="SongTimeChanged" >00:00</Label>
                 </DockPanel>
-                <Slider x:Name="PlayerSlider" Style="{StaticResource Slider_CustomStyle}"></Slider>
+                <Slider x:Name="PlayerSlider" Style="{StaticResource Slider_CustomStyle}" MouseMove="PlayerSlider_MouseMove" Maximum="1"></Slider>
             </StackPanel>
         </DockPanel>
     </Grid>

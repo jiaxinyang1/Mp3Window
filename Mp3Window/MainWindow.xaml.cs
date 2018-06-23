@@ -194,9 +194,17 @@ namespace Mp3Window
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
 
-            Popup1.IsOpen = false;
-            Popup1.IsOpen = true;
-           
+            if (Popup1.IsOpen == true)
+            {
+                Popup1.IsOpen = false;
+            }
+            else
+            {
+                Popup1.IsOpen = false;
+                Popup1.IsOpen = true;
+
+            }
+
         }
         /// <summary>
         /// 显示搜索页面
@@ -258,15 +266,9 @@ namespace Mp3Window
                 isPlaying = false;
                 Buttonplay.Source = playingImage;
             }
-      
-
-
-      
-
-        
-
+            //设置滑动条最大值
+            PlayerSlider.Maximum = media.NaturalDuration.TimeSpan.TotalSeconds;
             
-       
         }
 
         /// <summary>
@@ -287,8 +289,9 @@ namespace Mp3Window
                 strSeconds = "0" + seconds;
             else
                 strSeconds = seconds.ToString();
-            SongTime.Content = "/" + strMinutes + ":" + strSeconds;
+            SongTime.Content =  strMinutes + ":" + strSeconds;
         }
+
         /// <summary>
         /// 更新时间戳
         /// </summary>
@@ -296,29 +299,16 @@ namespace Mp3Window
         /// <param name="e"></param>
         private void TimeChanged(object sender,EventArgs e )
         {
-
+            PlayerSlider.Value = media.Position.TotalSeconds;
             SongTimeChanged.Content = media.Position.ToString(@"mm\:ss");
-
         }
-        /// <summary>
-        /// 网易会更新uri 得实时拿
-        /// </summary>
-        /// <param name="song"></param>
-        public  string GetUri()
-        {
-            string url="null";
-            int id =Int32.Parse(Data.SelcetMusic.Url) ;
-     
-            dynamic songDetail = Data.net.GetMusicDetail(id);
-            if (songDetail != null)
-            {
-                foreach (var detail in songDetail.data)
-                {
-                    url = detail.url;
-                }
-            }
 
-            return url;
+        private void PlayerSlider_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                media.Position= new TimeSpan(0,0,(int)PlayerSlider.Value);
+            }
         }
         /// <summary>
         /// 创建歌单按钮被按下
@@ -332,6 +322,34 @@ namespace Mp3Window
             addmuscilistWindow.Owner = this;
             addmuscilistWindow.ShowDialog();
 
+        }
+        /// <summary>
+        /// 网易会更新uri 得实时拿
+        /// </summary>
+        /// <param name="song"></param>
+        public string GetUri()
+        {
+            string url = "null";
+            int id = Int32.Parse(Data.SelcetMusic.Url);
+
+            dynamic songDetail = Data.net.GetMusicDetail(id);
+            if (songDetail != null)
+            {
+                foreach (var detail in songDetail.data)
+                {
+                    url = detail.url;
+                }
+            }
+            return url;
+        }
+        /// <summary>
+        /// 设置音量
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void VolumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            media.Volume = (int)e.NewValue;
         }
     }
 
