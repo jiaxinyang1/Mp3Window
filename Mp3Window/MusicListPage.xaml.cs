@@ -93,7 +93,7 @@ namespace Mp3Window
         {
        
             Data.SelcetMusic = (MusicListView.SelectedItem as Music);
-            ParentWindow.SongName.Content = (MusicListView.SelectedItem as Music)?.SongName;
+         
         
         }
         /// <summary>

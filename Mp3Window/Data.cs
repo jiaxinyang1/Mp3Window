@@ -26,7 +26,7 @@ namespace Mp3Window
     public class Data
     {
         //网络交互
-        public static NetEase net;
+        public static NetEase net =new NetEase();
         //被选中的歌曲
         public static Music SelcetMusic { get; set; }
         //正在播放的歌曲名称

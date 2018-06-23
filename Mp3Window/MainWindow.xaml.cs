@@ -13,6 +13,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 using Lsj.Util.JSON;
 using NeteaseCloud;
 
@@ -69,7 +70,7 @@ namespace Mp3Window
   
         private MusicListPage _musicListPage;//指向子窗口
 
-        System.Windows.Media.MediaPlayer media = new MediaPlayer();//播放类
+        private System.Windows.Media.MediaPlayer media;
 
         private bool isPlaying=false;//是否正在播放
         private BitmapImage playingImage = new BitmapImage(new Uri("image/play.png", UriKind.Relative));
@@ -100,10 +101,8 @@ namespace Mp3Window
           
             Data.ReadName();
 
-            Data.net=new NetEase();
+     
             InitLeftMusicListView();
-            MusicListListView.SelectedItem = Data.MusicListName[0];
-            MusicListListView_SelectionChanged(this,null);
             //初始化左边的歌单名称列表
 
         }
@@ -114,6 +113,8 @@ namespace Mp3Window
         public  void InitLeftMusicListView()
         {
             MusicListListView.ItemsSource = Data.MusicListName;
+            MusicListListView.SelectedItem = Data.MusicListName[0];
+            MusicListListView_SelectionChanged(this, null);
         }
         /// <summary>
         /// 最大化不覆盖任务栏
@@ -242,35 +243,45 @@ namespace Mp3Window
         /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
             if (!isPlaying)
             {
                 isPlaying = true;
                 Buttonplay.Source = pauseBitmapImage;
-                media.Open(new Uri(GetUri()));
-                while (!media.NaturalDuration.HasTimeSpan)
-                {
-                    Thread.Sleep(10);
-                }
-                GetTime();
-                media.Play();
-
-                System.Windows.Threading.DispatcherTimer myTimer = new System.Windows.Threading.DispatcherTimer();
-                myTimer.Tick += new EventHandler(TimeChanged);
-                myTimer.Interval = new TimeSpan(0, 0, 0, 1);
-                myTimer.Start();
+                media = new MediaPlayer();//播放类
+                Thread t1 = new Thread(new ThreadStart(InitSong));
+                t1.Start();
             }
             else
             {
-                media.Pause();
+                media.Pause();    
                 isPlaying = false;
                 Buttonplay.Source = playingImage;
             }
-            //设置滑动条最大值
-            PlayerSlider.Maximum = media.NaturalDuration.TimeSpan.TotalSeconds;
-            
         }
-
+        /// <summary>
+        /// 使用线程管理 多线程 进行歌曲信息初始化，防止界面卡死
+        /// </summary>
+        private void InitSong()
+        {    
+            Buttonplay.Dispatcher.BeginInvoke(new Action(Prepaer_DoWork), DispatcherPriority.Background);
+        }
+        private void Prepaer_DoWork()
+        {
+            SongName.Content = "正在加载歌曲ing";
+            media.Open(new Uri(GetUri()));
+            while (!media.NaturalDuration.HasTimeSpan)
+            {
+                Thread.Sleep(10);
+            }
+            GetTime();
+            //Time 更新时间戳
+            System.Windows.Threading.DispatcherTimer myTimer = new System.Windows.Threading.DispatcherTimer();
+            myTimer.Tick += new EventHandler(TimeChanged);
+            myTimer.Interval = new TimeSpan(0, 0, 0, 1);
+             SongName.Content = Data.SelcetMusic.SongName;
+            myTimer.Start();
+            media.Play();
+        }
         /// <summary>
         /// 获取歌曲时间长度
         /// </summary>
@@ -289,7 +300,10 @@ namespace Mp3Window
                 strSeconds = "0" + seconds;
             else
                 strSeconds = seconds.ToString();
-            SongTime.Content =  strMinutes + ":" + strSeconds;
+            var result = strMinutes + ":" + strSeconds;
+            SongTime.Content = result;
+            //设置滑动条最大值
+            PlayerSlider.Maximum = (int)media.NaturalDuration.TimeSpan.TotalSeconds;
         }
 
         /// <summary>
